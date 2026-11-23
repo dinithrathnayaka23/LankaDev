@@ -315,23 +315,33 @@ export class LankaConfigError extends Error {
 
 ### Tasks
 
-- [ ] `src/locales.ts` — types, `LANKA_LOCALES`, `getLocaleInfo`, `isLankaLocale`, `parseLocale`.
-- [ ] `src/config.ts` — `createLankaConfig` (validates, freezes, applies fallback default), `LankaConfigError`.
-- [ ] `src/resolve.ts` — `resolveLocale`, `parseAcceptLanguage`.
-- [ ] `src/index.ts` — named exports only (no default export).
+- [x] `src/locales.ts` — types, `LANKA_LOCALES`, `getLocaleInfo`, `isLankaLocale`, `parseLocale`.
+- [x] `src/config.ts` — `createLankaConfig` (validates, freezes, applies fallback default), `LankaConfigError`.
+- [x] `src/resolve.ts` — `resolveLocale`, `parseAcceptLanguage`.
+- [x] `src/index.ts` — named exports only (no default export).
 
 ### Tests (`src/*.test.ts`)
 
-- [ ] Every `LankaConfigError` code thrown for the matching bad input.
-- [ ] Returned config is frozen (`Object.isFrozen`).
-- [ ] `parseLocale` normalises case, `_`, bare language; rejects `"fr"`, `""`.
-- [ ] `resolveLocale` picks first supported candidate, skips null/unsupported, falls back.
-- [ ] `parseAcceptLanguage("ta-LK,ta;q=0.9,en;q=0.8")` → ordered list; malformed header → `[]`.
-- [ ] Type tests (`expectTypeOf`): `createLankaConfig({ locales: ["si-LK"], defaultLocale: "en-LK" })` is a type error.
+- [x] Every `LankaConfigError` code thrown for the matching bad input.
+- [x] Returned config is frozen (`Object.isFrozen`).
+- [x] `parseLocale` normalises case, `_`, bare language; rejects `"fr"`, `""`.
+- [x] `resolveLocale` picks first supported candidate, skips null/unsupported, falls back.
+- [x] `parseAcceptLanguage("ta-LK,ta;q=0.9,en;q=0.8")` → ordered list; malformed header → `[]`.
+- [x] Type tests (`expectTypeOf`): `createLankaConfig({ locales: ["si-LK"], defaultLocale: "en-LK" })` is a type error.
+
+### As built
+
+- `LankaConfigError` lives in `src/errors.ts` (shared by `locales.ts` and `config.ts`, avoids an import cycle).
+- `defaultLocale` / `fallbackLocale` use `NoInfer<L>` so they cannot widen the inferred locale union (the type-error test above). Requires TS ≥ 5.4 (ADR-0005).
+- Extra export `isConfiguredLocale(config, value)` — type guard narrowing to the config's locales; used by `resolveLocale`, needed again by React/Next.
+- `parseLocale` also accepts the language's own script subtag (`si-Sinh-LK`, `ta-Taml`). It returns `null` for other regions (`en-US`, `ta-IN`); `resolveLocale` handles those by RFC 4647 lookup (truncate to the language, then move to the next candidate).
+- `parseAcceptLanguage` skips individual malformed entries (bad tag, bad `q`, extra parameters), drops `q=0`, keeps `*`, sorts stably, and reads at most 64 entries.
+- Non-string input from untyped JavaScript never throws in `parseLocale` / `resolveLocale` / `parseAcceptLanguage`. A missing or non-array `locales` (or missing input) throws `EMPTY_LOCALES`.
+- Coverage gate is enforced: `@lankadev/core` runs `vitest run --coverage` with 100 % thresholds (lines, branches, functions, statements) on `src/{locales,config,resolve,errors}.ts`.
 
 ### Exit gate
 
-- 100 % line coverage on `core/src/{locales,config,resolve}.ts`.
+- [x] 100 % line coverage on `core/src/{locales,config,resolve}.ts` (also 100 % branches).
 
 ---
 
