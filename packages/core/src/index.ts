@@ -1,10 +1,17 @@
 /**
- * `@lankadev/core` — locale types, configuration and fallback helpers.
+ * `@lankadev/core` — locale types, configuration and fallback helpers for
+ * English (`en-LK`), Sinhala (`si-LK`) and Tamil (`ta-LK`).
  *
- * Scaffold only (M1). The public API is implemented in M2.
+ * Framework-agnostic, zero dependencies, no global state. Formatting helpers live in the
+ * `@lankadev/core/formatting` entry point.
  *
  * @packageDocumentation
  */
 
-/** npm name of this package. Placeholder export until M2. */
-export const PACKAGE_NAME = "@lankadev/core";
+export { createLankaConfig, isConfiguredLocale } from "./config.js";
+export type { LankaConfig, LankaConfigInput } from "./config.js";
+export { LankaConfigError } from "./errors.js";
+export type { LankaConfigErrorCode } from "./errors.js";
+export { getLocaleInfo, isLankaLocale, LANKA_LOCALES, parseLocale } from "./locales.js";
+export type { LankaLanguage, LankaLocale, LankaScript, LocaleInfo } from "./locales.js";
+export { parseAcceptLanguage, resolveLocale } from "./resolve.js";
