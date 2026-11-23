@@ -1,0 +1,39 @@
+{
+  "$comment": "M0 transliteration audit word list. Self-authored, synthetic, MIT. 15 Sinhala + 15 Tamil common words. 'variants' are plausible Latin spellings a user might type; the first variant is the 'natural' spelling used for the strict score. Expected outputs are NOT yet native-speaker reviewed (reviewedBy: null).",
+  "version": 1,
+  "reviewedBy": null,
+  "sinhala": [
+    { "id": "si-01", "gloss": "I / me",          "expected": "මම",                 "variants": ["mama"] },
+    { "id": "si-02", "gloss": "you",             "expected": "ඔය",                 "variants": ["oya"] },
+    { "id": "si-03", "gloss": "how",             "expected": "කොහොමද",             "variants": ["kohomada"] },
+    { "id": "si-04", "gloss": "greeting",        "expected": "ආයුබෝවන්",           "variants": ["ayubowan", "aayubowan", "aayuboowan"] },
+    { "id": "si-05", "gloss": "Sinhala",         "expected": "සිංහල",              "variants": ["sinhala", "siMhala", "singhala"] },
+    { "id": "si-06", "gloss": "Lanka (obj.)",    "expected": "ලංකාව",              "variants": ["lankawa", "lankaawa", "laMkaawa"] },
+    { "id": "si-07", "gloss": "home",            "expected": "ගෙදර",               "variants": ["gedara"] },
+    { "id": "si-08", "gloss": "temple",          "expected": "පන්සල",              "variants": ["pansala"] },
+    { "id": "si-09", "gloss": "rice",            "expected": "බත්",                "variants": ["bath"] },
+    { "id": "si-10", "gloss": "milk",            "expected": "කිරි",               "variants": ["kiri"] },
+    { "id": "si-11", "gloss": "one / it",        "expected": "එක",                 "variants": ["eka"] },
+    { "id": "si-12", "gloss": "thanks",          "expected": "ස්තූතියි",           "variants": ["sthuthiyi", "sthuuthiyi", "sthoothiyi"] },
+    { "id": "si-13", "gloss": "Sri Lanka",       "expected": "ශ්‍රී ලංකා",     "variants": ["shri lanka", "shrii lankaa", "sri lanka", "shree lankaa", "shrii laMkaa"] },
+    { "id": "si-14", "gloss": "school",          "expected": "විද්‍යාලය",      "variants": ["vidyalaya", "vidyaalaya", "widyaalaya", "vidYaalaya"] },
+    { "id": "si-15", "gloss": "food",            "expected": "කෑම",                "variants": ["kaema", "kAema", "kAma", "kæma"] }
+  ],
+  "tamil": [
+    { "id": "ta-01", "gloss": "greeting",        "expected": "வணக்கம்",            "variants": ["vanakkam", "vaNakkam"] },
+    { "id": "ta-02", "gloss": "thanks",          "expected": "நன்றி",              "variants": ["nandri", "nanri", "nanRi", "na~nRi"] },
+    { "id": "ta-03", "gloss": "mother",          "expected": "அம்மா",              "variants": ["amma", "ammaa", "ammA"] },
+    { "id": "ta-04", "gloss": "father",          "expected": "அப்பா",              "variants": ["appa", "appaa", "appA"] },
+    { "id": "ta-05", "gloss": "Tamil",           "expected": "தமிழ்",              "variants": ["tamil", "tamizh", "thamizh", "thamiz"] },
+    { "id": "ta-06", "gloss": "how",             "expected": "எப்படி",             "variants": ["eppadi", "eppaDi"] },
+    { "id": "ta-07", "gloss": "house",           "expected": "வீடு",               "variants": ["veedu", "viidu", "veeDu", "vIDu"] },
+    { "id": "ta-08", "gloss": "milk",            "expected": "பால்",               "variants": ["paal", "pAl"] },
+    { "id": "ta-09", "gloss": "sea",             "expected": "கடல்",               "variants": ["kadal", "kaDal"] },
+    { "id": "ta-10", "gloss": "fruit",           "expected": "பழம்",               "variants": ["pazham", "pazam"] },
+    { "id": "ta-11", "gloss": "water",           "expected": "தண்ணீர்",            "variants": ["thanneer", "thaNNeer", "taNNIr", "thaNNiir"] },
+    { "id": "ta-12", "gloss": "I",               "expected": "நான்",               "variants": ["naan", "nAn"] },
+    { "id": "ta-13", "gloss": "here",            "expected": "இங்கே",              "variants": ["inge", "ingae", "ingee", "ingE"] },
+    { "id": "ta-14", "gloss": "book",            "expected": "புத்தகம்",           "variants": ["puththagam", "puththakam", "puthagam", "puttakam"] },
+    { "id": "ta-15", "gloss": "Sri Lanka",       "expected": "இலங்கை",             "variants": ["ilangai", "ilankai"] }
+  ]
+}
