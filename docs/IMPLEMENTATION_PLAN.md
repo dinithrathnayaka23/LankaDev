@@ -1,6 +1,6 @@
 # LankaDev — Milestone Implementation Plan
 
-> Source: *LankaDev Complete Implementation Plan* (7 Nov 2026).
+> Source: _LankaDev Complete Implementation Plan_ (7 Nov 2026).
 > Purpose: a build-ready, milestone-by-milestone plan. Each milestone has one branch, a clear scope, files to create, tests and an exit gate.
 > Work through milestones in order. Each one merges to `main` via PR before the next starts (except where noted as parallel-safe).
 
@@ -9,7 +9,7 @@
 ## 0. How to use this plan
 
 1. Start a milestone: `git checkout main && git pull && git checkout -b <branch-name>`.
-2. Ask Claude: *"Implement Milestone N from docs/IMPLEMENTATION_PLAN.md"*. Work task by task; tick the checkboxes in this file as part of the PR.
+2. Ask Claude: _"Implement Milestone N from docs/IMPLEMENTATION_PLAN.md"_. Work task by task; tick the checkboxes in this file as part of the PR.
 3. Before opening the PR, run the gate: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 4. Add a changeset (`pnpm changeset`) for any change to a published package (from M1 onward).
 5. Merge with squash. Commit messages follow Conventional Commits (`feat(core): ...`, `fix(unicode): ...`, `chore: ...`, `docs: ...`).
@@ -23,22 +23,22 @@ type ∈ chore | feat | docs | release
 
 ### Milestone overview
 
-| #   | Milestone                              | Branch                              | Depends on | Package(s) touched                |
-| --- | -------------------------------------- | ----------------------------------- | ---------- | --------------------------------- |
-| M0  | Discovery & decision records           | `docs/m0-discovery-adrs`            | —          | none (docs only)                  |
-| M1  | Monorepo foundation                    | `chore/m1-monorepo-foundation`      | M0         | workspace tooling                 |
-| M2  | Core: locales, config, fallback        | `feat/m2-core-locale-config`        | M1         | `@lankadev/core`                  |
-| M3  | Formatting: LKR, numbers, dates        | `feat/m3-core-formatting`           | M2         | `@lankadev/core`                  |
-| M4  | Unicode utilities + corpus             | `feat/m4-unicode`                   | M1         | `@lankadev/unicode`               |
-| M5  | React provider, hooks, switcher        | `feat/m5-react-provider`            | M2, M3     | `@lankadev/react`                 |
-| M6  | Transliteration engine (pure)          | `feat/m6-transliteration-engine`    | M4         | `@lankadev/transliteration`       |
-| M7  | Transliteration input component        | `feat/m7-transliteration-input`     | M5, M6     | `@lankadev/react`                 |
-| M8  | i18n integrations + React/Vite example | `feat/m8-i18next-vite-example`      | M5         | examples, docs                    |
-| M9  | Next.js App Router package + example   | `feat/m9-nextjs-app-router`         | M5, M7     | `@lankadev/next`, examples        |
-| M10 | Typography presets + docs site         | `docs/m10-typography-docs-site`     | M8, M9     | `@lankadev/react` (CSS), apps/docs|
-| M11 | Quality hardening                      | `chore/m11-quality-hardening`       | M10        | all                               |
-| M12 | Beta release (0.x `beta` tag)          | `release/m12-beta`                  | M11        | all                               |
-| M13 | v1.0 stable release                    | `release/m13-v1`                    | M12        | all                               |
+| #   | Milestone                              | Branch                           | Depends on | Package(s) touched                 |
+| --- | -------------------------------------- | -------------------------------- | ---------- | ---------------------------------- |
+| M0  | Discovery & decision records           | `docs/m0-discovery-adrs`         | —          | none (docs only)                   |
+| M1  | Monorepo foundation                    | `chore/m1-monorepo-foundation`   | M0         | workspace tooling                  |
+| M2  | Core: locales, config, fallback        | `feat/m2-core-locale-config`     | M1         | `@lankadev/core`                   |
+| M3  | Formatting: LKR, numbers, dates        | `feat/m3-core-formatting`        | M2         | `@lankadev/core`                   |
+| M4  | Unicode utilities + corpus             | `feat/m4-unicode`                | M1         | `@lankadev/unicode`                |
+| M5  | React provider, hooks, switcher        | `feat/m5-react-provider`         | M2, M3     | `@lankadev/react`                  |
+| M6  | Transliteration engine (pure)          | `feat/m6-transliteration-engine` | M4         | `@lankadev/transliteration`        |
+| M7  | Transliteration input component        | `feat/m7-transliteration-input`  | M5, M6     | `@lankadev/react`                  |
+| M8  | i18n integrations + React/Vite example | `feat/m8-i18next-vite-example`   | M5         | examples, docs                     |
+| M9  | Next.js App Router package + example   | `feat/m9-nextjs-app-router`      | M5, M7     | `@lankadev/next`, examples         |
+| M10 | Typography presets + docs site         | `docs/m10-typography-docs-site`  | M8, M9     | `@lankadev/react` (CSS), apps/docs |
+| M11 | Quality hardening                      | `chore/m11-quality-hardening`    | M10        | all                                |
+| M12 | Beta release (0.x `beta` tag)          | `release/m12-beta`               | M11        | all                                |
+| M13 | v1.0 stable release                    | `release/m13-v1`                 | M12        | all                                |
 
 Parallel-safe pairs (if you want to go faster): **M3 ∥ M4**, **M6 ∥ M5**, **M8 ∥ M7**.
 
@@ -48,17 +48,17 @@ Parallel-safe pairs (if you want to go faster): **M3 ∥ M4**, **M6 ∥ M5**, **
 
 These answer Section 17 of the source plan so coding can start immediately. Each becomes an ADR in M0.
 
-| #  | Decision                     | Default chosen                                                                                                                                                       | Why                                                          |
-| -- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| D1 | Name & npm scope             | `@lankadev/*` — **verify** availability on npm (`npm view @lankadev/core`) and create the npm org before M12.                                                       | Working name from source plan.                               |
-| D2 | First translation engine     | **i18next + react-i18next** for React/Vite; **next-intl** for the Next.js example. No LankaDev adapter code until a real need appears — examples + helpers first.    | Avoid duplicating i18n engines.                              |
-| D3 | Who owns locale state        | **Both.** `LankaProvider` is uncontrolled by default (`defaultLocale`), and controlled when `locale` + `onLocaleChange` are passed (Next.js routing, i18next, etc.). | Hosts with their own routing must stay in control.           |
-| D4 | Transliteration conventions  | Own **clean-room, documented scheme** (“LankaDev Singlish v1”, “LankaDev Tanglish v1”), authored as JSON data in-repo with provenance notes.                        | Avoids licensing risk of copying tables.                     |
-| D5 | Wrap vs build engine         | **Build** a small deterministic engine **unless** the M0 audit finds a maintained, MIT/Apache, accurate engine. Time-box the audit to 1 day.                        | Decision gate in source plan §3.                             |
-| D6 | Supported versions           | Node **22 / 24 / 26 LTS** (`>=22`); React **18.3 / 19**; Next.js **15 / 16** (App Router); evergreen browsers (last 2 Chrome/Edge/Firefox/Safari, iOS Safari 16+). See ADR-0005. | Current LTS / stable lines (checked 2026-11-23).             |
-| D7 | License & data               | **MIT** (already in repo). All fixtures synthetic or self-authored; fonts referenced, never bundled.                                                                 | No redistribution obligations.                               |
-| D8 | Module format                | **ESM-first + CJS** via tsup (dual output), `"sideEffects": false`, explicit `exports`.                                                                              | Next.js/Jest users still hit CJS paths.                      |
-| D9 | Package count                | 5 packages: `core` (locale + formatting), `unicode`, `transliteration`, `react`, `next`.                                                                             | Source plan: fewer packages; formatting folded into core.    |
+| #   | Decision                    | Default chosen                                                                                                                                                                   | Why                                                       |
+| --- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| D1  | Name & npm scope            | `@lankadev/*` — **verify** availability on npm (`npm view @lankadev/core`) and create the npm org before M12.                                                                    | Working name from source plan.                            |
+| D2  | First translation engine    | **i18next + react-i18next** for React/Vite; **next-intl** for the Next.js example. No LankaDev adapter code until a real need appears — examples + helpers first.                | Avoid duplicating i18n engines.                           |
+| D3  | Who owns locale state       | **Both.** `LankaProvider` is uncontrolled by default (`defaultLocale`), and controlled when `locale` + `onLocaleChange` are passed (Next.js routing, i18next, etc.).             | Hosts with their own routing must stay in control.        |
+| D4  | Transliteration conventions | Own **clean-room, documented scheme** (“LankaDev Singlish v1”, “LankaDev Tanglish v1”), authored as JSON data in-repo with provenance notes.                                     | Avoids licensing risk of copying tables.                  |
+| D5  | Wrap vs build engine        | **Build** a small deterministic engine **unless** the M0 audit finds a maintained, MIT/Apache, accurate engine. Time-box the audit to 1 day.                                     | Decision gate in source plan §3.                          |
+| D6  | Supported versions          | Node **22 / 24 / 26 LTS** (`>=22`); React **18.3 / 19**; Next.js **15 / 16** (App Router); evergreen browsers (last 2 Chrome/Edge/Firefox/Safari, iOS Safari 16+). See ADR-0005. | Current LTS / stable lines (checked 2026-11-23).          |
+| D7  | License & data              | **MIT** (already in repo). All fixtures synthetic or self-authored; fonts referenced, never bundled.                                                                             | No redistribution obligations.                            |
+| D8  | Module format               | **ESM-first + CJS** via tsup (dual output), `"sideEffects": false`, explicit `exports`.                                                                                          | Next.js/Jest users still hit CJS paths.                   |
+| D9  | Package count               | 5 packages: `core` (locale + formatting), `unicode`, `transliteration`, `react`, `next`.                                                                                         | Source plan: fewer packages; formatting folded into core. |
 
 ---
 
@@ -166,19 +166,36 @@ docs/SCOPE.md
 
 ### Tasks
 
-- [ ] `pnpm init`; set `"private": true`, `"packageManager": "pnpm@<current>"`, `"engines": { "node": ">=22" }`.
-- [ ] `pnpm-workspace.yaml` with `packages/*`, `examples/*`, `apps/*`.
-- [ ] Turborepo: `turbo.json` pipelines `build`, `test`, `lint`, `typecheck` (with `dependsOn: ["^build"]` for build).
-- [ ] `tsconfig.base.json`: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `moduleResolution: "Bundler"`, `target: ES2022`, `lib: ["ES2022", "DOM"]`, `verbatimModuleSyntax`.
-- [ ] ESLint (flat config, `typescript-eslint`, `eslint-plugin-react-hooks`) + Prettier.
-- [ ] Vitest workspace (`vitest.workspace.ts`); `jsdom` env for `react` package only.
-- [ ] Scaffold the 5 packages, each with: `package.json`, `tsconfig.json`, `tsup.config.ts`, `src/index.ts` (exports a placeholder), `README.md`, one passing test.
-- [ ] Package `package.json` template (see below).
-- [ ] Changesets: `pnpm add -Dw @changesets/cli && pnpm changeset init`.
-- [ ] `publint` + `@arethetypeswrong/cli` script: `pnpm check:packages`.
-- [ ] GitHub Actions `ci.yml`: matrix Node 22/24/26 → install (frozen lockfile) → lint → typecheck → test → build → check:packages.
-- [ ] Repo hygiene: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue templates (bug, feature, language-review), PR template with DoD checklist.
-- [ ] Dependabot (or Renovate) config; `.nvmrc` → `24`.
+- [x] `pnpm init`; set `"private": true`, `"packageManager": "pnpm@<current>"`, `"engines": { "node": ">=22" }`.
+- [x] `pnpm-workspace.yaml` with `packages/*`, `examples/*`, `apps/*`.
+- [x] Turborepo: `turbo.json` pipelines `build`, `test`, `lint`, `typecheck` (with `dependsOn: ["^build"]` for build).
+- [x] `tsconfig.base.json`: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `moduleResolution: "Bundler"`, `target: ES2022`, `lib: ["ES2022", "DOM"]`, `verbatimModuleSyntax`.
+- [x] ESLint (flat config, `typescript-eslint`, `eslint-plugin-react-hooks`) + Prettier.
+- [x] Vitest workspace (`vitest.workspace.ts`); `jsdom` env for `react` package only.
+- [x] Scaffold the 5 packages, each with: `package.json`, `tsconfig.json`, `tsup.config.ts`, `src/index.ts` (exports a placeholder), `README.md`, one passing test.
+- [x] Package `package.json` template (see below).
+- [x] Changesets: `pnpm add -Dw @changesets/cli && pnpm changeset init`.
+- [x] `publint` + `@arethetypeswrong/cli` script: `pnpm check:packages`.
+- [x] GitHub Actions `ci.yml`: matrix Node 22/24/26 → install (frozen lockfile) → lint → typecheck → test → build → check:packages.
+- [x] Repo hygiene: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue templates (bug, feature, language-review), PR template with DoD checklist.
+- [x] Dependabot (or Renovate) config; `.nvmrc` → `24`.
+
+### As built (deviations from the sketch below)
+
+| Planned                             | Actual                                                                                            | Why                                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `vitest.workspace.ts`               | Root `vitest.config.ts` with `test.projects: ["packages/*"]` + one `vitest.config.ts` per package | Workspace files were removed in Vitest 4+; `projects` is the replacement (Vitest 5.1).              |
+| `lint` as a Turbo task per package  | Single root `pnpm lint` (`eslint .`) with type-aware rules via `projectService`                   | One run covers root configs, docs scripts and packages; faster than 5 processes.                    |
+| TypeScript "latest"                 | TypeScript **6.0.3** pinned                                                                       | `typescript-eslint` 8.73 supports `<6.1`; TS 7 (native) not yet supported.                          |
+| Flat `exports` conditions           | Nested `import`/`require` blocks, each with its own `types` (`.d.ts` / `.d.cts`)                  | Correct types for both ESM and CJS consumers; `attw` passes.                                        |
+| `check:packages` via `pnpm -r exec` | Turbo task `check:package` per package: `publint --strict && attw --pack . --profile node16`      | Cached; `node16` profile ignores node10 (subpath exports cannot resolve there by design, ADR-0006). |
+| `changeset init`                    | `.changeset/config.json` written by hand (`access: public`)                                       | Changesets 3 `init` is interactive only.                                                            |
+| —                                   | `pnpm-workspace.yaml` has `allowBuilds: { esbuild: true }`                                        | pnpm 12 fails install on unapproved build scripts.                                                  |
+| tsup `treeshake: true`              | Removed                                                                                           | Rollup tree-shake pass strips the `"use client"` banner; esbuild already tree-shakes.               |
+| —                                   | `@lankadev/react` and `@lankadev/next` wipe `dist/` in the `build` script, tsup `clean: false`    | `next` has two tsup configs (server / client) that would race on `clean`.                           |
+| `styles.css` export (ADR-0006)      | Deferred to M10                                                                                   | No CSS exists yet; avoids a dangling export.                                                        |
+| —                                   | `.gitattributes` (`eol=lf`), `.editorconfig`, `.gitignore`, `.prettierignore`                     | Stop CRLF churn on Windows.                                                                         |
+| —                                   | CI pins actions by commit SHA; `TURBO_TELEMETRY_DISABLED=1`                                       | Supply-chain hygiene; no tooling telemetry in CI.                                                   |
 
 ### Package `package.json` template
 
@@ -194,9 +211,9 @@ docs/SCOPE.md
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -210,8 +227,8 @@ docs/SCOPE.md
     "build": "tsup",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
-  }
+    "lint": "eslint .",
+  },
 }
 ```
 
@@ -255,8 +272,8 @@ export interface LocaleInfo {
   locale: LankaLocale;
   language: LankaLanguage;
   script: LankaScript;
-  nativeName: string;      // "සිංහල", "தமிழ்", "English"
-  englishName: string;     // "Sinhala", "Tamil", "English"
+  nativeName: string; // "සිංහල", "தமிழ்", "English"
+  englishName: string; // "Sinhala", "Tamil", "English"
   dir: "ltr";
 }
 export function getLocaleInfo(locale: LankaLocale): LocaleInfo;
@@ -264,24 +281,36 @@ export function getLocaleInfo(locale: LankaLocale): LocaleInfo;
 export interface LankaConfigInput<L extends LankaLocale = LankaLocale> {
   locales: readonly L[];
   defaultLocale: L;
-  fallbackLocale?: L;                 // defaults to defaultLocale
+  fallbackLocale?: L; // defaults to defaultLocale
 }
 export interface LankaConfig<L extends LankaLocale = LankaLocale> {
   readonly locales: readonly L[];
   readonly defaultLocale: L;
   readonly fallbackLocale: L;
 }
-export function createLankaConfig<L extends LankaLocale>(input: LankaConfigInput<L>): LankaConfig<L>;
+export function createLankaConfig<L extends LankaLocale>(
+  input: LankaConfigInput<L>,
+): LankaConfig<L>;
 
 export function isLankaLocale(value: unknown): value is LankaLocale;
 /** Accepts "si", "si-LK", "si_LK", "SI-lk"; returns null if unknown. */
 export function parseLocale(value: string): LankaLocale | null;
 /** Returns the first supported locale from a candidate list, else config.fallbackLocale. */
-export function resolveLocale<L extends LankaLocale>(config: LankaConfig<L>, candidates: readonly (string | null | undefined)[]): L;
+export function resolveLocale<L extends LankaLocale>(
+  config: LankaConfig<L>,
+  candidates: readonly (string | null | undefined)[],
+): L;
 /** Parse an Accept-Language header into ordered candidates (q-values respected). */
 export function parseAcceptLanguage(header: string | null | undefined): string[];
 
-export class LankaConfigError extends Error { code: "EMPTY_LOCALES" | "DEFAULT_NOT_IN_LOCALES" | "FALLBACK_NOT_IN_LOCALES" | "DUPLICATE_LOCALE" | "UNKNOWN_LOCALE" }
+export class LankaConfigError extends Error {
+  code:
+    | "EMPTY_LOCALES"
+    | "DEFAULT_NOT_IN_LOCALES"
+    | "FALLBACK_NOT_IN_LOCALES"
+    | "DUPLICATE_LOCALE"
+    | "UNKNOWN_LOCALE";
+}
 ```
 
 ### Tasks
@@ -316,24 +345,34 @@ export class LankaConfigError extends Error { code: "EMPTY_LOCALES" | "DEFAULT_N
 
 ```ts
 export interface FormatLKROptions {
-  locale: LankaLocale;                       // explicit — no hidden global
-  display?: "symbol" | "code" | "name" | "narrowSymbol";  // default "symbol"
-  minimumFractionDigits?: number;            // default 2
-  maximumFractionDigits?: number;            // default 2
+  locale: LankaLocale; // explicit — no hidden global
+  display?: "symbol" | "code" | "name" | "narrowSymbol"; // default "symbol"
+  minimumFractionDigits?: number; // default 2
+  maximumFractionDigits?: number; // default 2
 }
 export function formatLKR(amount: number | bigint, options: FormatLKROptions): string;
 
-export function formatNumber(value: number | bigint, options: { locale: LankaLocale } & Intl.NumberFormatOptions): string;
+export function formatNumber(
+  value: number | bigint,
+  options: { locale: LankaLocale } & Intl.NumberFormatOptions,
+): string;
 
 export interface FormatDateOptions extends Intl.DateTimeFormatOptions {
   locale: LankaLocale;
-  timeZone?: string;                         // default "Asia/Colombo"
+  timeZone?: string; // default "Asia/Colombo"
 }
 export function formatDate(date: Date | number, options: FormatDateOptions): string;
-export function formatRelativeTime(value: number, unit: Intl.RelativeTimeFormatUnit, options: { locale: LankaLocale }): string;
+export function formatRelativeTime(
+  value: number,
+  unit: Intl.RelativeTimeFormatUnit,
+  options: { locale: LankaLocale },
+): string;
 
 /** Cached Intl formatter factory (keyed by locale+options). */
-export function getNumberFormatter(locale: LankaLocale, options?: Intl.NumberFormatOptions): Intl.NumberFormat;
+export function getNumberFormatter(
+  locale: LankaLocale,
+  options?: Intl.NumberFormatOptions,
+): Intl.NumberFormat;
 ```
 
 ### Tasks
@@ -342,7 +381,7 @@ export function getNumberFormatter(locale: LankaLocale, options?: Intl.NumberFor
 - [ ] `src/formatting/currency.ts` — `formatLKR` (`style: "currency", currency: "LKR"`). Reject `NaN`/`Infinity` with `RangeError`.
 - [ ] `src/formatting/number.ts`, `date.ts`, `relative.ts`.
 - [ ] Add `"./formatting"` entry in `exports` and `tsup` entry list.
-- [ ] `docs/formatting.md` — document real output per locale per runtime, and state clearly: *formatting only; use decimal-safe arithmetic (integer cents or a decimal lib) for money*.
+- [ ] `docs/formatting.md` — document real output per locale per runtime, and state clearly: _formatting only; use decimal-safe arithmetic (integer cents or a decimal lib) for money_.
 
 ### Tests
 
@@ -365,13 +404,13 @@ export function getNumberFormatter(locale: LankaLocale, options?: Intl.NumberFor
 
 ### Reference ranges
 
-| Script  | Block                              | Notes                                                                   |
-| ------- | ---------------------------------- | ----------------------------------------------------------------------- |
+| Script  | Block                              | Notes                                                                                                     |
+| ------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Sinhala | U+0D80–U+0DFF                      | Al-lakuna (virama) U+0DCA. ZWJ U+200D forms yansaya/rakaransaya/touching letters — **must be preserved**. |
-| Sinhala | U+111E0–U+111FF (Archaic Numbers)  | Detect as Sinhala.                                                      |
-| Tamil   | U+0B80–U+0BFF                      | Pulli (virama) U+0BCD.                                                  |
-| Tamil   | U+11FC0–U+11FFF (Tamil Supplement) | Fractions/symbols; detect as Tamil.                                     |
-| Latin   | Basic Latin + Latin-1 letters      |                                                                         |
+| Sinhala | U+111E0–U+111FF (Archaic Numbers)  | Detect as Sinhala.                                                                                        |
+| Tamil   | U+0B80–U+0BFF                      | Pulli (virama) U+0BCD.                                                                                    |
+| Tamil   | U+11FC0–U+11FFF (Tamil Supplement) | Fractions/symbols; detect as Tamil.                                                                       |
+| Latin   | Basic Latin + Latin-1 letters      |                                                                                                           |
 
 ### Public API
 
@@ -381,7 +420,13 @@ export type Script = "sinhala" | "tamil" | "latin" | "common" | "other";
 export function getCharScript(codePoint: number): Script;
 /** Dominant script by letter count, ignoring "common" (digits, punctuation, spaces, emoji). */
 export function detectScript(text: string): Script | "mixed" | "unknown";
-export interface ScriptBreakdown { sinhala: number; tamil: number; latin: number; other: number; total: number }
+export interface ScriptBreakdown {
+  sinhala: number;
+  tamil: number;
+  latin: number;
+  other: number;
+  total: number;
+}
 export function analyzeScripts(text: string): ScriptBreakdown;
 export function containsSinhala(text: string): boolean;
 export function containsTamil(text: string): boolean;
@@ -395,8 +440,12 @@ export function toSearchKey(text: string, options?: { stripJoiners?: boolean }):
 /** Grapheme-aware helpers (Intl.Segmenter with documented fallback). */
 export function graphemes(text: string, locale?: string): string[];
 export function graphemeLength(text: string, locale?: string): number;
-export function truncate(text: string, maxGraphemes: number, options?: { ellipsis?: string; locale?: string }): string;
-export function words(text: string, locale?: string): string[];   // Intl.Segmenter granularity "word", isWordLike only
+export function truncate(
+  text: string,
+  maxGraphemes: number,
+  options?: { ellipsis?: string; locale?: string },
+): string;
+export function words(text: string, locale?: string): string[]; // Intl.Segmenter granularity "word", isWordLike only
 export function isSegmenterSupported(): boolean;
 ```
 
@@ -454,7 +503,7 @@ export interface LankaContextValue<L extends LankaLocale = LankaLocale> {
   formatNumber: (v: number | bigint, opts?: Intl.NumberFormatOptions) => string;
   formatDate: (d: Date | number, opts?: Omit<FormatDateOptions, "locale">) => string;
 }
-export function useLanka<L extends LankaLocale = LankaLocale>(): LankaContextValue<L>;   // throws LankaProviderMissingError outside provider
+export function useLanka<L extends LankaLocale = LankaLocale>(): LankaContextValue<L>; // throws LankaProviderMissingError outside provider
 export function useLocale(): LankaLocale;
 
 /** Headless switcher: you render; it gives props. */
@@ -511,22 +560,37 @@ export function LanguageSwitcher(props: { label?: string; className?: string }):
 
 ```ts
 export type TransliterationScheme = "singlish-v1" | "tanglish-v1";
-export interface TransliterateOptions { finalConsonant?: "virama" | "inherent"; escapeDelimiter?: string | null }
+export interface TransliterateOptions {
+  finalConsonant?: "virama" | "inherent";
+  escapeDelimiter?: string | null;
+}
 
-export function transliterate(input: string, scheme: TransliterationScheme, options?: TransliterateOptions): string;
+export function transliterate(
+  input: string,
+  scheme: TransliterationScheme,
+  options?: TransliterateOptions,
+): string;
 
 /** Incremental API for live typing. Pure: returns new state, never mutates. */
-export interface TransliterationState { readonly raw: string; readonly output: string }
+export interface TransliterationState {
+  readonly raw: string;
+  readonly output: string;
+}
 export interface Transliterator {
   scheme: TransliterationScheme;
   empty(): TransliterationState;
   feed(state: TransliterationState, chunk: string): TransliterationState;
-  backspace(state: TransliterationState): TransliterationState;   // removes last raw char, re-derives output
+  backspace(state: TransliterationState): TransliterationState; // removes last raw char, re-derives output
   convertWord(raw: string): string;
 }
-export function createTransliterator(scheme: TransliterationScheme, options?: TransliterateOptions): Transliterator;
+export function createTransliterator(
+  scheme: TransliterationScheme,
+  options?: TransliterateOptions,
+): Transliterator;
 
-export function getSchemeTable(scheme: TransliterationScheme): ReadonlyArray<{ input: string; output: string; kind: string }>;  // for docs/cheat sheet
+export function getSchemeTable(
+  scheme: TransliterationScheme,
+): ReadonlyArray<{ input: string; output: string; kind: string }>; // for docs/cheat sheet
 ```
 
 Subpath exports so users only ship the language they need: `@lankadev/transliteration/sinhala`, `@lankadev/transliteration/tamil`.
@@ -575,18 +639,34 @@ export interface UseTransliterationOptions {
   scheme: TransliterationScheme;
   value: string;
   onChange: (value: string) => void;
-  enabled?: boolean;                        // default true
-  pasteMode?: "raw" | "transliterate";      // default "raw"
+  enabled?: boolean; // default true
+  pasteMode?: "raw" | "transliterate"; // default "raw"
 }
-export function useTransliteration<T extends HTMLInputElement | HTMLTextAreaElement>(opts: UseTransliterationOptions): {
+export function useTransliteration<T extends HTMLInputElement | HTMLTextAreaElement>(
+  opts: UseTransliterationOptions,
+): {
   ref: React.RefObject<T>;
-  inputProps: Pick<React.InputHTMLAttributes<T>, "value" | "onChange" | "onKeyDown" | "onBeforeInput" | "onCompositionStart" | "onCompositionEnd" | "onPaste" | "onSelect" | "lang">;
+  inputProps: Pick<
+    React.InputHTMLAttributes<T>,
+    | "value"
+    | "onChange"
+    | "onKeyDown"
+    | "onBeforeInput"
+    | "onCompositionStart"
+    | "onCompositionEnd"
+    | "onPaste"
+    | "onSelect"
+    | "lang"
+  >;
   enabled: boolean;
   setEnabled: (v: boolean) => void;
-  pendingRaw: string;                       // current uncommitted Latin buffer (for hint UI)
+  pendingRaw: string; // current uncommitted Latin buffer (for hint UI)
 };
 
-export function TransliterationInput(props: Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> & UseTransliterationOptions & { as?: "input" | "textarea" }): JSX.Element;
+export function TransliterationInput(
+  props: Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> &
+    UseTransliterationOptions & { as?: "input" | "textarea" },
+): JSX.Element;
 ```
 
 Note: the source plan's `script="sinhala" method="singlish"` maps to `scheme="singlish-v1"`; offer `script`/`method` as aliases only if users ask.
@@ -648,12 +728,23 @@ Note: the source plan's `script="sinhala" method="singlish"` maps to `scheme="si
 
 ```ts
 // @lankadev/next/server   (no "use client"; safe in middleware / RSC)
-export function getLocaleFromRequest(config: LankaConfig, req: { headers: Headers; cookies?: { get(name: string): { value: string } | undefined } }, opts?: { cookieName?: string }): LankaLocale;
-export function createLankaMiddleware(config: LankaConfig, opts?: { cookieName?: string; localePrefix?: "always" | "as-needed" }): (req: NextRequest) => NextResponse | undefined;
+export function getLocaleFromRequest(
+  config: LankaConfig,
+  req: { headers: Headers; cookies?: { get(name: string): { value: string } | undefined } },
+  opts?: { cookieName?: string },
+): LankaLocale;
+export function createLankaMiddleware(
+  config: LankaConfig,
+  opts?: { cookieName?: string; localePrefix?: "always" | "as-needed" },
+): (req: NextRequest) => NextResponse | undefined;
 export const LANKA_LOCALE_COOKIE = "LANKA_LOCALE";
 
 // @lankadev/next/client   ("use client")
-export function LankaNextProvider(props: { config: LankaConfig; locale: LankaLocale; children: React.ReactNode }): JSX.Element;
+export function LankaNextProvider(props: {
+  config: LankaConfig;
+  locale: LankaLocale;
+  children: React.ReactNode;
+}): JSX.Element;
 // wraps LankaProvider in controlled mode; setLocale → router.replace to new locale segment + sets cookie
 ```
 
@@ -703,8 +794,14 @@ messages/{en-LK,si-LK,ta-LK}.json
     --lanka-line-height-sinhala: 1.7;
     --lanka-line-height-tamil: 1.6;
   }
-  :lang(si) { font-family: var(--lanka-font-sinhala); line-height: var(--lanka-line-height-sinhala); }
-  :lang(ta) { font-family: var(--lanka-font-tamil); line-height: var(--lanka-line-height-tamil); }
+  :lang(si) {
+    font-family: var(--lanka-font-sinhala);
+    line-height: var(--lanka-line-height-sinhala);
+  }
+  :lang(ta) {
+    font-family: var(--lanka-font-tamil);
+    line-height: var(--lanka-line-height-tamil);
+  }
   ```
   (Verify line-height values visually; document font licenses — Noto = OFL.)
 - [ ] `apps/docs` (VitePress): Quick start, React guide, Next.js guide, i18next/next-intl guides, Transliteration guide (scheme tables auto-generated from `getSchemeTable`), Unicode guide, Typography guide, API reference (TypeDoc → markdown), Troubleshooting, FAQ, Limitations.
@@ -793,13 +890,13 @@ messages/{en-LK,si-LK,ta-LK}.json
 
 ## Appendix A — Risk triggers during build
 
-| Trigger                                                   | Action                                                                         |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| M0 audit finds a good MIT/Apache engine                   | Replace M6 with "adapter around X"; keep the same public API.                  |
-| M6 exact-match < 90 % after milestone                     | Mark transliteration `experimental`; proceed to M7 with the toggle off by default. |
-| Caret/IME bugs on a platform in M7                        | Disable transliteration on that platform (feature-detect), document; don't block release. |
-| next-intl covers routing fully                            | Shrink `@lankadev/next` to the client provider + `getLocaleFromRequest`.        |
-| Bundle budget exceeded                                    | Split scheme JSON to lazy subpath imports before adding features.              |
+| Trigger                                 | Action                                                                                    |
+| --------------------------------------- | ----------------------------------------------------------------------------------------- |
+| M0 audit finds a good MIT/Apache engine | Replace M6 with "adapter around X"; keep the same public API.                             |
+| M6 exact-match < 90 % after milestone   | Mark transliteration `experimental`; proceed to M7 with the toggle off by default.        |
+| Caret/IME bugs on a platform in M7      | Disable transliteration on that platform (feature-detect), document; don't block release. |
+| next-intl covers routing fully          | Shrink `@lankadev/next` to the client provider + `getLocaleFromRequest`.                  |
+| Bundle budget exceeded                  | Split scheme JSON to lazy subpath imports before adding features.                         |
 
 ## Appendix B — Prompts to drive each milestone with Claude
 

@@ -1,0 +1,8 @@
+dist
+coverage
+.turbo
+.next
+node_modules
+pnpm-lock.yaml
+.changeset/*.md
+CHANGELOG.md

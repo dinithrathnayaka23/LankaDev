@@ -1,0 +1,9 @@
+{
+  "$comment": "Root project used only for linting/type-aware tooling of root config files. Each package has its own tsconfig.json.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["*.ts", "*.mts", "*.js", "*.mjs"],
+  "exclude": ["node_modules", "packages", "examples", "apps", "docs"]
+}

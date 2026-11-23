@@ -76,7 +76,9 @@ const adapters = {
     },
     "singlish-sinhala": async () => {
       const m = await load("singlish-sinhala");
-      const wasm = await readFile(path.join(path.resolve(nodeModules), "singlish-sinhala", "singlish_core_bg.wasm"));
+      const wasm = await readFile(
+        path.join(path.resolve(nodeModules), "singlish-sinhala", "singlish_core_bg.wasm"),
+      );
       await m.default(wasm);
       return (t) => m.transliterate(t);
     },
@@ -124,17 +126,27 @@ for (const lang of ["sinhala", "tamil"]) {
       report[name] = { error: e.message };
       continue;
     }
-    let strict = 0, best = 0, bestLoose = 0;
+    let strict = 0,
+      best = 0,
+      bestLoose = 0;
     const rows = [];
     for (const w of words[lang]) {
       const outputs = w.variants.map((v) => {
-        try { return nfc(fn(v)); } catch (e) { return `ERROR: ${e.message}`; }
+        try {
+          return nfc(fn(v));
+        } catch (e) {
+          return `ERROR: ${e.message}`;
+        }
       });
       const exp = nfc(w.expected);
       if (outputs[0] === exp) strict++;
       if (outputs.some((o) => o === exp)) best++;
       if (outputs.some((o) => noJoiners(o) === noJoiners(exp))) bestLoose++;
-      rows.push({ id: w.id, expected: exp, outputs: Object.fromEntries(w.variants.map((v, i) => [v, outputs[i]])) });
+      rows.push({
+        id: w.id,
+        expected: exp,
+        outputs: Object.fromEntries(w.variants.map((v, i) => [v, outputs[i]])),
+      });
     }
     const n = words[lang].length;
     console.log(`${name} | ${strict}/${n} | ${best}/${n} | ${bestLoose}/${n}`);

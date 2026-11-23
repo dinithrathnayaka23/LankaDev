@@ -5,7 +5,7 @@
 
 ## Context
 
-Source plan §5: build with tsup or unbuild; *preserve ESM and CJS only if support demand requires both*; explicit `exports`; tree-shakeable transliteration; SSR-safe exports with clear client-only entry points.
+Source plan §5: build with tsup or unbuild; _preserve ESM and CJS only if support demand requires both_; explicit `exports`; tree-shakeable transliteration; SSR-safe exports with clear client-only entry points.
 
 Consumers include Vite (ESM), Next.js 15/16 (ESM + server bundling), and older Jest/CommonJS test setups.
 

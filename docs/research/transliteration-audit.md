@@ -1,7 +1,7 @@
 # Transliteration Engine Audit (M0)
 
 - **Date:** 2026-11-23
-- **Goal:** Answer decision D5 (source plan §3 decision gate): *wrap an existing engine, or build a new one?*
+- **Goal:** Answer decision D5 (source plan §3 decision gate): _wrap an existing engine, or build a new one?_
 - **Status:** Static review **complete**. Hands-on accuracy run **pending** (see §4).
 
 ---
@@ -10,15 +10,15 @@
 
 An engine is "suitable to wrap" only if **all** hard criteria pass.
 
-| # | Criterion                                   | Type  | Why                                                    |
-| - | ------------------------------------------- | ----- | ------------------------------------------------------ |
-| C1 | MIT / Apache-2.0 / BSD, with clear upstream data provenance | Hard | LankaDev is MIT; source plan §10.                |
-| C2 | Maintained: > 1 maintainer **or** ≥ 12 months of release history, public repo reachable | Hard | Avoid depending on an abandoned single-author package. |
-| C3 | Deterministic, synchronous, no network, no WASM async init | Hard | SSR-safe, works in controlled React inputs. |
-| C4 | Exact-match ≥ 90 % (best-variant) on `words.json` | Hard | Same bar as our M6 exit gate. |
-| C5 | Incremental / stateful API (or cheap enough to re-run per word) | Soft | Needed for live typing (M7). |
-| C6 | Published mapping table + test corpus       | Soft  | Transparency (source plan §7). |
-| C7 | ≤ 10 KB min+gzip for one language           | Soft  | Bundle budget (M11). |
+| #   | Criterion                                                                               | Type | Why                                                    |
+| --- | --------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------ |
+| C1  | MIT / Apache-2.0 / BSD, with clear upstream data provenance                             | Hard | LankaDev is MIT; source plan §10.                      |
+| C2  | Maintained: > 1 maintainer **or** ≥ 12 months of release history, public repo reachable | Hard | Avoid depending on an abandoned single-author package. |
+| C3  | Deterministic, synchronous, no network, no WASM async init                              | Hard | SSR-safe, works in controlled React inputs.            |
+| C4  | Exact-match ≥ 90 % (best-variant) on `words.json`                                       | Hard | Same bar as our M6 exit gate.                          |
+| C5  | Incremental / stateful API (or cheap enough to re-run per word)                         | Soft | Needed for live typing (M7).                           |
+| C6  | Published mapping table + test corpus                                                   | Soft | Transparency (source plan §7).                         |
+| C7  | ≤ 10 KB min+gzip for one language                                                       | Soft | Bundle budget (M11).                                   |
 
 ---
 
@@ -28,24 +28,24 @@ Data from [competitor-audit.md](competitor-audit.md) §4–5 plus reading each p
 
 ### Sinhala
 
-| Package                        | C1 licence/provenance | C2 maintained | C3 sync/SSR | C5 incremental | C6 table+corpus | Verdict (static) |
-| ------------------------------ | --------------------- | ------------- | ----------- | -------------- | --------------- | ---------------- |
-| `@siyabasa/singlish`           | Apache-2.0 ✅; convention credited to Helakuru (convention only) ⚠️ | ❌ 4 releases over 12 days (Feb 2026), 1 org, 4 stars | ✅ | ✅ (React hook) | ⚠️ table partly, no corpus | Best Sinhala candidate; fails C2. |
-| `@sinhala-typer/typing-engine` | MIT; tables "ported value-for-value from the legacy engine" — origin unidentified ❌ | ❌ 1 release; repo URL 404 | ✅ | ✅ best-in-class `(state,key)→edit` + `resync` | ⚠️ | Fails C1, C2. Good design reference. |
-| `@felix-tech/singlish-js`      | MIT ✅ | ❌ 4 releases over 3 days (May 2026) | ✅ | ⚠️ string→string only | ✅ table in README, no corpus | Fails C2. |
-| `sinhala-text-converters`      | MIT, but credits UCSC algorithms; upstream licence not stated ⚠️ | ❌ 2 releases, 1 day | ✅ | ❌ | ❌ | Fails C1 (unclear), C2. |
-| `singlish-pro`                 | MIT | ❌ repo 404 | ⚠️ DOM-coupled class + function | ❌ | ⚠️ partial table | Fails C2; DOM-coupled. |
-| `singlish-sinhala`             | MIT | ❌ no repo | ❌ WASM async `init()` | ❌ | ❌ | Fails C2, C3. |
-| `@vm75/inditrans` (ITRANS→Sinhala) | MIT ✅ | ✅ 27 releases since 2023 | ❌ WASM async `init()` | ❌ | ✅ ITRANS spec | Fails C3; ITRANS is not how Sri Lankans type Singlish. |
+| Package                            | C1 licence/provenance                                                                | C2 maintained                                         | C3 sync/SSR                     | C5 incremental                                 | C6 table+corpus               | Verdict (static)                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------- | ------------------------------- | ---------------------------------------------- | ----------------------------- | ------------------------------------------------------ |
+| `@siyabasa/singlish`               | Apache-2.0 ✅; convention credited to Helakuru (convention only) ⚠️                  | ❌ 4 releases over 12 days (Feb 2026), 1 org, 4 stars | ✅                              | ✅ (React hook)                                | ⚠️ table partly, no corpus    | Best Sinhala candidate; fails C2.                      |
+| `@sinhala-typer/typing-engine`     | MIT; tables "ported value-for-value from the legacy engine" — origin unidentified ❌ | ❌ 1 release; repo URL 404                            | ✅                              | ✅ best-in-class `(state,key)→edit` + `resync` | ⚠️                            | Fails C1, C2. Good design reference.                   |
+| `@felix-tech/singlish-js`          | MIT ✅                                                                               | ❌ 4 releases over 3 days (May 2026)                  | ✅                              | ⚠️ string→string only                          | ✅ table in README, no corpus | Fails C2.                                              |
+| `sinhala-text-converters`          | MIT, but credits UCSC algorithms; upstream licence not stated ⚠️                     | ❌ 2 releases, 1 day                                  | ✅                              | ❌                                             | ❌                            | Fails C1 (unclear), C2.                                |
+| `singlish-pro`                     | MIT                                                                                  | ❌ repo 404                                           | ⚠️ DOM-coupled class + function | ❌                                             | ⚠️ partial table              | Fails C2; DOM-coupled.                                 |
+| `singlish-sinhala`                 | MIT                                                                                  | ❌ no repo                                            | ❌ WASM async `init()`          | ❌                                             | ❌                            | Fails C2, C3.                                          |
+| `@vm75/inditrans` (ITRANS→Sinhala) | MIT ✅                                                                               | ✅ 27 releases since 2023                             | ❌ WASM async `init()`          | ❌                                             | ✅ ITRANS spec                | Fails C3; ITRANS is not how Sri Lankans type Singlish. |
 
 ### Tamil
 
-| Package                           | C1 | C2 | C3 | C5 | C6 | Verdict (static) |
-| --------------------------------- | -- | -- | -- | -- | -- | ---------------- |
-| `@piraisoodan/tanglish`           | MIT, but dictionary built from scraped Wikipedia/literature ⚠️ | ❌ 3 releases over 3 days (Jan 2026) | ✅ | ⚠️ suggestions API | ⚠️ | Fails C2; 1.56 MB unpacked fails C7. |
-| `indic-transliterator`            | Apache-2.0 ✅ | ❌ no repo URL | ✅ | ⚠️ React hook | ❌ | Fails C2; Devanagari-pivot loses ன/ந/ண, ழ, ற distinctions by design. |
-| `@vm75/inditrans` (ITRANS→Tamil)  | MIT ✅ | ✅ | ❌ WASM async | ❌ | ✅ | Fails C3; scheme ≠ Tanglish. |
-| `@indic-transliteration/sanscript`| MIT ✅ | ✅ (124 stars, last release 2025-06) | ✅ | ❌ | ✅ | Passes C1–C3, but ITRANS→Tamil is a scholarly scheme, not natural Tanglish (expected to fail C4 on natural spellings). |
+| Package                            | C1                                                             | C2                                   | C3            | C5                 | C6  | Verdict (static)                                                                                                       |
+| ---------------------------------- | -------------------------------------------------------------- | ------------------------------------ | ------------- | ------------------ | --- | ---------------------------------------------------------------------------------------------------------------------- |
+| `@piraisoodan/tanglish`            | MIT, but dictionary built from scraped Wikipedia/literature ⚠️ | ❌ 3 releases over 3 days (Jan 2026) | ✅            | ⚠️ suggestions API | ⚠️  | Fails C2; 1.56 MB unpacked fails C7.                                                                                   |
+| `indic-transliterator`             | Apache-2.0 ✅                                                  | ❌ no repo URL                       | ✅            | ⚠️ React hook      | ❌  | Fails C2; Devanagari-pivot loses ன/ந/ண, ழ, ற distinctions by design.                                                   |
+| `@vm75/inditrans` (ITRANS→Tamil)   | MIT ✅                                                         | ✅                                   | ❌ WASM async | ❌                 | ✅  | Fails C3; scheme ≠ Tanglish.                                                                                           |
+| `@indic-transliteration/sanscript` | MIT ✅                                                         | ✅ (124 stars, last release 2025-06) | ✅            | ❌                 | ✅  | Passes C1–C3, but ITRANS→Tamil is a scholarly scheme, not natural Tanglish (expected to fail C4 on natural spellings). |
 
 ### Static conclusion
 
@@ -76,9 +76,9 @@ Required by source plan §3 step 3. Not executed in M0 because it runs third-par
 
 ### Results
 
-| Package | Lang | Strict | Best-variant | Best ignoring ZWJ | Notes |
-| ------- | ---- | ------ | ------------ | ----------------- | ----- |
-| _to fill after run_ | | | | | |
+| Package             | Lang | Strict | Best-variant | Best ignoring ZWJ | Notes |
+| ------------------- | ---- | ------ | ------------ | ----------------- | ----- |
+| _to fill after run_ |      |        |              |                   |       |
 
 When filled: if no package reaches ≥ 90 % best-variant, the decision in §3 stands unchanged. If one does, append a note to ADR-0004 (do not rewrite it).
 

@@ -5,18 +5,18 @@
 
 ## In scope
 
-| Area | v1 deliverable | Package | Milestone |
-| ---- | -------------- | ------- | --------- |
-| Locales | `en-LK`, `si-LK`, `ta-LK` types, `createLankaConfig`, validation, fallback, `resolveLocale`, `parseAcceptLanguage` | `@lankadev/core` | M2 |
-| Formatting | `formatLKR`, `formatNumber`, `formatDate` (default `Asia/Colombo`), `formatRelativeTime` over `Intl`; documented per-runtime output | `@lankadev/core/formatting` | M3 |
-| Unicode | `detectScript`, `analyzeScripts`, `normalizeSinhalaText`, `normalizeTamilText`, `toSearchKey`, grapheme/word helpers, `truncate`; ≥ 60 corpus fixtures | `@lankadev/unicode` | M4 |
-| React | `LankaProvider` (controlled + uncontrolled), `useLanka`, `useLocale`, headless `useLanguageSwitcher`, `LanguageSwitcher` | `@lankadev/react` | M5 |
-| Transliteration | Deterministic `singlish-v1` and `tanglish-v1`; `transliterate`, `createTransliterator`; ≥ 150 golden fixtures per language | `@lankadev/transliteration` | M6 |
-| Input | `useTransliteration`, `TransliterationInput`; caret preservation, IME-safe, paste modes, revert, toggle | `@lankadev/react` | M7 |
-| i18n integration | i18next + react-i18next example and guide | examples, docs | M8 |
-| Next.js | App Router example with next-intl; `@lankadev/next/server` + `/client`; zero hydration warnings | `@lankadev/next` | M9 |
-| Typography | Optional CSS variables + `:lang()` rules; font guidance (Noto, OFL) | `@lankadev/react/styles.css`, docs | M10 |
-| Docs | Docs site + client-side playground | `apps/docs` | M10 |
+| Area             | v1 deliverable                                                                                                                                         | Package                            | Milestone |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | --------- |
+| Locales          | `en-LK`, `si-LK`, `ta-LK` types, `createLankaConfig`, validation, fallback, `resolveLocale`, `parseAcceptLanguage`                                     | `@lankadev/core`                   | M2        |
+| Formatting       | `formatLKR`, `formatNumber`, `formatDate` (default `Asia/Colombo`), `formatRelativeTime` over `Intl`; documented per-runtime output                    | `@lankadev/core/formatting`        | M3        |
+| Unicode          | `detectScript`, `analyzeScripts`, `normalizeSinhalaText`, `normalizeTamilText`, `toSearchKey`, grapheme/word helpers, `truncate`; ≥ 60 corpus fixtures | `@lankadev/unicode`                | M4        |
+| React            | `LankaProvider` (controlled + uncontrolled), `useLanka`, `useLocale`, headless `useLanguageSwitcher`, `LanguageSwitcher`                               | `@lankadev/react`                  | M5        |
+| Transliteration  | Deterministic `singlish-v1` and `tanglish-v1`; `transliterate`, `createTransliterator`; ≥ 150 golden fixtures per language                             | `@lankadev/transliteration`        | M6        |
+| Input            | `useTransliteration`, `TransliterationInput`; caret preservation, IME-safe, paste modes, revert, toggle                                                | `@lankadev/react`                  | M7        |
+| i18n integration | i18next + react-i18next example and guide                                                                                                              | examples, docs                     | M8        |
+| Next.js          | App Router example with next-intl; `@lankadev/next/server` + `/client`; zero hydration warnings                                                        | `@lankadev/next`                   | M9        |
+| Typography       | Optional CSS variables + `:lang()` rules; font guidance (Noto, OFL)                                                                                    | `@lankadev/react/styles.css`, docs | M10       |
+| Docs             | Docs site + client-side playground                                                                                                                     | `apps/docs`                        | M10       |
 
 ## Non-goals (v1)
 
@@ -43,10 +43,10 @@
 
 ## Open items (not blocking M1)
 
-| Item | Owner | Needed by |
-| ---- | ----- | --------- |
-| Create npm org `lankadev` and enable 2FA | Maintainer (manual on npmjs.com) | M12 |
-| Trademark / domain check for "LankaDev" | Maintainer | M12 |
-| Run hands-on transliteration audit (`docs/research/transliteration-audit/run-audit.mjs`) and fill results table | Maintainer approval to execute third-party code | Before M6 starts |
-| Native-speaker review of `docs/research/transliteration-audit/words.json` | Recruit ≥ 1 Sinhala, ≥ 1 Tamil reviewer | Before M6 exit |
-| Developer interviews (source plan days 1–2: 5–8 React/Next.js devs) | Maintainer | Before M5 (to validate API) |
+| Item                                                                                                            | Owner                                           | Needed by                   |
+| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------- |
+| Create npm org `lankadev` and enable 2FA                                                                        | Maintainer (manual on npmjs.com)                | M12                         |
+| Trademark / domain check for "LankaDev"                                                                         | Maintainer                                      | M12                         |
+| Run hands-on transliteration audit (`docs/research/transliteration-audit/run-audit.mjs`) and fill results table | Maintainer approval to execute third-party code | Before M6 starts            |
+| Native-speaker review of `docs/research/transliteration-audit/words.json`                                       | Recruit ≥ 1 Sinhala, ≥ 1 Tamil reviewer         | Before M6 exit              |
+| Developer interviews (source plan days 1–2: 5–8 React/Next.js devs)                                             | Maintainer                                      | Before M5 (to validate API) |
