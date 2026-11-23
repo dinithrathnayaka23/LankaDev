@@ -7,28 +7,28 @@
 
 Release status on 2026-11-23 (nodejs.org `dist/index.json`, npm registry):
 
-| Line | Latest | Status |
-| ---- | ------ | ------ |
-| Node.js 22 "Jod" | 22.23.5 | Maintenance LTS |
-| Node.js 24 "Krypton" | 24.22.3 | LTS |
-| Node.js 26 "Lithium" | 26.13.1 | Active LTS |
-| React | 19.3.1 | Current; 18.3 still widely deployed |
-| Next.js | 16.4.6 | Current; 15.x still widely deployed |
-| next-intl | 4.15.3 | Current |
-| i18next / react-i18next | 27.2.4 / 18.0.3 | Current |
+| Line                    | Latest          | Status                              |
+| ----------------------- | --------------- | ----------------------------------- |
+| Node.js 22 "Jod"        | 22.23.5         | Maintenance LTS                     |
+| Node.js 24 "Krypton"    | 24.22.3         | LTS                                 |
+| Node.js 26 "Lithium"    | 26.13.1         | Active LTS                          |
+| React                   | 19.3.1          | Current; 18.3 still widely deployed |
+| Next.js                 | 16.4.6          | Current; 15.x still widely deployed |
+| next-intl               | 4.15.3          | Current                             |
+| i18next / react-i18next | 27.2.4 / 18.0.3 | Current                             |
 
 The implementation plan draft said "Next.js 15+" and "Node 22/24"; both need updating to current lines.
 
 ## Decision
 
-| Target       | Supported range                         | Tested in CI                |
-| ------------ | --------------------------------------- | --------------------------- |
-| Node.js      | `>=22` (`engines`)                      | 22, 24, 26                  |
-| React        | `^18.3.0 \|\| ^19.0.0` (peer)           | 18.3.x, 19.x latest         |
-| react-dom    | same as React                           | same                        |
-| Next.js      | `^15.0.0 \|\| ^16.0.0` (peer of `@lankadev/next`) App Router only | 15.x latest, 16.x latest |
-| TypeScript (consumers) | `>=5.4`                       | 5.x latest                  |
-| Browsers     | Last 2 versions of Chrome, Edge, Firefox, Safari; iOS Safari ≥ 16; Android Chrome latest | Playwright: Chromium, Firefox, WebKit + mobile viewport |
+| Target                 | Supported range                                                                          | Tested in CI                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Node.js                | `>=22` (`engines`)                                                                       | 22, 24, 26                                              |
+| React                  | `^18.3.0 \|\| ^19.0.0` (peer)                                                            | 18.3.x, 19.x latest                                     |
+| react-dom              | same as React                                                                            | same                                                    |
+| Next.js                | `^15.0.0 \|\| ^16.0.0` (peer of `@lankadev/next`) App Router only                        | 15.x latest, 16.x latest                                |
+| TypeScript (consumers) | `>=5.4`                                                                                  | 5.x latest                                              |
+| Browsers               | Last 2 versions of Chrome, Edge, Firefox, Safari; iOS Safari ≥ 16; Android Chrome latest | Playwright: Chromium, Firefox, WebKit + mobile viewport |
 
 Notes:
 

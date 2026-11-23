@@ -5,7 +5,7 @@
 
 ## Context
 
-The source plan proposes up to six packages (`core`, `react`, `next`, `transliteration`, `unicode`, `formatting`) but also warns: *start with fewer packages if maintenance capacity is limited*. The project has one primary maintainer.
+The source plan proposes up to six packages (`core`, `react`, `next`, `transliteration`, `unicode`, `formatting`) but also warns: _start with fewer packages if maintenance capacity is limited_. The project has one primary maintainer.
 
 Name check ([competitor-audit.md §1](../research/competitor-audit.md)): `@lankadev/core`, `@lankadev/react`, `lankadev`, `lanka-dev` all return 404 on the npm registry; no packages exist under `scope:lankadev`. The npm org itself still has to be created. Similar names in use: `lanka-kit`, `lanka-validations`.
 
@@ -13,13 +13,13 @@ Name check ([competitor-audit.md §1](../research/competitor-audit.md)): `@lanka
 
 Publish **five** packages under the `@lankadev` scope:
 
-| Package                     | Contents                                                   | Runtime deps        | Peer deps          |
-| --------------------------- | ---------------------------------------------------------- | ------------------- | ------------------ |
-| `@lankadev/core`            | Locale types, config, fallback, Accept-Language parsing, **formatting** (LKR, number, date, relative time) via subpath `@lankadev/core/formatting` | none | none |
-| `@lankadev/unicode`         | Script detection, normalization, search keys, grapheme/word segmentation | none | none |
-| `@lankadev/transliteration` | Singlish/Tanglish engines; subpaths `/sinhala`, `/tamil`    | `@lankadev/unicode` (only if needed) | none |
-| `@lankadev/react`           | Provider, hooks, language switcher, `TransliterationInput`, optional CSS | `@lankadev/core`, `@lankadev/unicode`, `@lankadev/transliteration` | `react`, `react-dom` |
-| `@lankadev/next`            | App Router helpers; subpaths `/server`, `/client`          | `@lankadev/core`, `@lankadev/react` | `next`, `react`, `react-dom` |
+| Package                     | Contents                                                                                                                                           | Runtime deps                                                       | Peer deps                    |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------- |
+| `@lankadev/core`            | Locale types, config, fallback, Accept-Language parsing, **formatting** (LKR, number, date, relative time) via subpath `@lankadev/core/formatting` | none                                                               | none                         |
+| `@lankadev/unicode`         | Script detection, normalization, search keys, grapheme/word segmentation                                                                           | none                                                               | none                         |
+| `@lankadev/transliteration` | Singlish/Tanglish engines; subpaths `/sinhala`, `/tamil`                                                                                           | `@lankadev/unicode` (only if needed)                               | none                         |
+| `@lankadev/react`           | Provider, hooks, language switcher, `TransliterationInput`, optional CSS                                                                           | `@lankadev/core`, `@lankadev/unicode`, `@lankadev/transliteration` | `react`, `react-dom`         |
+| `@lankadev/next`            | App Router helpers; subpaths `/server`, `/client`                                                                                                  | `@lankadev/core`, `@lankadev/react`                                | `next`, `react`, `react-dom` |
 
 Rules:
 

@@ -11,7 +11,7 @@ Source plan §17 asks whether LankaDev owns locale state or accepts it from the 
 - Apps using i18next already hold the language in `i18n.language`.
 - Next.js App Router apps derive locale from the URL segment (`/si`, `/ta`) and must render the same locale on server and client to avoid hydration mismatch.
 
-The source plan's API contract also requires *no hidden global state* and *explicit locale parameters*.
+The source plan's API contract also requires _no hidden global state_ and _explicit locale parameters_.
 
 ## Decision
 
