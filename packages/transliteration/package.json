@@ -1,0 +1,81 @@
+{
+  "name": "@lankadev/transliteration",
+  "version": "0.0.0",
+  "description": "Deterministic Singlish-to-Sinhala and Tanglish-to-Tamil transliteration engines. Framework-agnostic.",
+  "license": "MIT",
+  "keywords": [
+    "sinhala",
+    "tamil",
+    "singlish",
+    "tanglish",
+    "transliteration",
+    "ime",
+    "input"
+  ],
+  "homepage": "https://github.com/dinithrathnayaka23/LankaDev#readme",
+  "bugs": {
+    "url": "https://github.com/dinithrathnayaka23/LankaDev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinithrathnayaka23/LankaDev.git",
+    "directory": "packages/transliteration"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./sinhala": {
+      "import": {
+        "types": "./dist/sinhala.d.ts",
+        "default": "./dist/sinhala.js"
+      },
+      "require": {
+        "types": "./dist/sinhala.d.cts",
+        "default": "./dist/sinhala.cjs"
+      }
+    },
+    "./tamil": {
+      "import": {
+        "types": "./dist/tamil.d.ts",
+        "default": "./dist/tamil.js"
+      },
+      "require": {
+        "types": "./dist/tamil.d.cts",
+        "default": "./dist/tamil.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check:package": "publint --strict && attw --pack . --profile node16",
+    "clean": "node -e \"for (const d of ['dist','coverage','.turbo']) require('node:fs').rmSync(d,{recursive:true,force:true})\""
+  }
+}
