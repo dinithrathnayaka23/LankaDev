@@ -1,0 +1,53 @@
+name: Language review (Sinhala / Tamil)
+description: Report wrong Sinhala or Tamil output, or review test fixtures as a native speaker.
+labels: [language-review, needs-native-review]
+body:
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Sinhala
+        - Tamil
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Transliteration (Singlish / Tanglish)
+        - Unicode (normalization, script detection, segmentation)
+        - Formatting (numbers, currency, dates)
+        - Test fixtures / corpus
+        - Docs wording
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input
+      description: Exact text you typed or passed in.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual output
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected output
+      description: What a native speaker would expect. Explain variants if more than one is acceptable.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Your background (optional)
+      description: e.g. "native Sinhala speaker", "Jaffna Tamil", "linguist". Helps us weigh dialect differences.

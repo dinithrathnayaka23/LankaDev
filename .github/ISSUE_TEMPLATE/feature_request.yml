@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest an improvement or a new capability.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do, and what makes it hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: API sketch or behaviour you would like.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other libraries or workarounds you tried.
+  - type: markdown
+    attributes:
+      value: "Check docs/SCOPE.md first: machine translation, spell-checking and translation engines are out of scope for v1."
