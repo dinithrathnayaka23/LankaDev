@@ -111,7 +111,7 @@ const adapters = {
 };
 
 const nfc = (s) => (typeof s === "string" ? s.normalize("NFC") : String(s));
-const noJoiners = (s) => nfc(s).replace(/[‌‍]/g, "");
+const noJoiners = (s) => nfc(s).replace(/[\u200c\u200d]/g, "");
 
 const report = {};
 for (const lang of ["sinhala", "tamil"]) {
