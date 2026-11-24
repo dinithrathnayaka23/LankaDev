@@ -1,9 +1,9 @@
 # @lankadev/core
 
-Locale configuration and fallback for English (`en-LK`), Sinhala (`si-LK`) and Tamil (`ta-LK`).
+Locale configuration, fallback and LKR/number/date formatting for English (`en-LK`), Sinhala (`si-LK`) and Tamil (`ta-LK`).
 Framework-agnostic, zero dependencies, no global state, no network calls.
 
-> **Status:** pre-release. Formatting helpers (`@lankadev/core/formatting`) land in M3.
+> **Status:** pre-release.
 
 ## Install
 
@@ -89,6 +89,32 @@ parseLocale("en-US"); // null
 | `isLankaLocale(value)`              | Exact, case-sensitive check; type guard                        |
 | `isConfiguredLocale(config, value)` | `true` if enabled in `config`; narrows to the config's locales |
 | `getLocaleInfo(locale)`             | e.g. `getLocaleInfo("si-LK").nativeName === "සිංහල"`            |
+
+## Formatting (`@lankadev/core/formatting`)
+
+Thin `Intl` wrappers with Sri Lankan defaults (`LKR`, `Asia/Colombo`). Every call takes an explicit `locale`.
+
+```ts
+import { formatDate, formatLKR, formatNumber, formatRelativeTime } from "@lankadev/core/formatting";
+
+formatLKR(12500.5, { locale: "si-LK" }); // "රු. 12,500.50"
+formatLKR(12500.5, { locale: "en-LK", display: "code" }); // "LKR 12,500.50"
+formatLKR(-0.001, { locale: "ta-LK" }); // "Rs. 0.00" (no "-0")
+formatNumber(0.256, { locale: "si-LK", style: "percent" }); // "26%"
+formatDate(new Date("2026-01-01T20:00:00Z"), { locale: "ta-LK", dateStyle: "long" }); // "2 ஜனவரி, 2026" (Colombo time)
+formatRelativeTime(-1, "day", { locale: "si-LK", numeric: "auto" }); // "ඊයේ"
+```
+
+| Function                                   | Notes                                                                   |
+| ------------------------------------------ | ----------------------------------------------------------------------- |
+| `formatLKR(amount, { locale, display? })`  | 2 decimals by default; `bigint` exact; `RangeError` on `NaN`/`Infinity` |
+| `formatNumber(value, { locale, ...intl })` | All `Intl.NumberFormatOptions` pass through                             |
+| `formatDate(date, { locale, ...intl })`    | `timeZone` defaults to `"Asia/Colombo"`                                 |
+| `formatRelativeTime(value, unit, opts)`    | `numeric` and `style` options                                           |
+| `getNumberFormatter(locale, options?)`     | Cached `Intl.NumberFormat` (same instance for same arguments)           |
+| `DEFAULT_TIME_ZONE`                        | `"Asia/Colombo"`                                                        |
+
+**Formatting only:** do money arithmetic with integer cents or a decimal library. Output follows the runtime's CLDR data and has known quirks (`en-LK` numeric dates are month-first; `ta-LK` uses lakh grouping). See [docs/formatting.md](../../docs/formatting.md) for recorded output per runtime.
 
 ## License
 
