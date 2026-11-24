@@ -1,7 +1,8 @@
 {
+  "$comment": "Everything in the package (sources, tests, configs) with Node types. Used by ESLint and the second typecheck pass. Library-only checks use tsconfig.lib.json.",
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": []
+    "types": ["node"]
   },
   "include": ["src", "*.config.ts"]
 }
