@@ -1,0 +1,393 @@
+[
+  {
+    "id": "ta-vowels-short",
+    "input": "அ இ உ எ ஒ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["அ", " ", "இ", " ", "உ", " ", "எ", " ", "ஒ"],
+      "nfc": "அ இ உ எ ஒ"
+    },
+    "notes": "Short vowels (uyir).",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-vowels-long",
+    "input": "ஆ ஈ ஊ ஏ ஓ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஆ", " ", "ஈ", " ", "ஊ", " ", "ஏ", " ", "ஓ"],
+      "nfc": "ஆ ஈ ஊ ஏ ஓ"
+    },
+    "notes": "Long vowels.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-vowels-diphthong",
+    "input": "ஐ ஔ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஐ", " ", "ஔ"],
+      "nfc": "ஐ ஔ"
+    },
+    "notes": "Diphthongs ai and au.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-aytham",
+    "input": "அஃது",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["அ", "ஃ", "து"],
+      "nfc": "அஃது"
+    },
+    "notes": "Aytham U+0B83 is a letter (Lo), its own cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-consonants-hard",
+    "input": "கசடதபற",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["க", "ச", "ட", "த", "ப", "ற"],
+      "nfc": "கசடதபற"
+    },
+    "notes": "Vallinam consonants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-consonants-soft",
+    "input": "ஙஞணநமன",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ங", "ஞ", "ண", "ந", "ம", "ன"],
+      "nfc": "ஙஞணநமன"
+    },
+    "notes": "Mellinam consonants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-consonants-medium",
+    "input": "யரலவழள",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ய", "ர", "ல", "வ", "ழ", "ள"],
+      "nfc": "யரலவழள"
+    },
+    "notes": "Idaiyinam consonants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-aa",
+    "input": "காலம்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கா", "ல", "ம்"],
+      "nfc": "காலம்"
+    },
+    "notes": "Uyirmei with aa sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-i",
+    "input": "கிளி",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கி", "ளி"],
+      "nfc": "கிளி"
+    },
+    "notes": "Uyirmei with i sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-ii",
+    "input": "நீர்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["நீ", "ர்"],
+      "nfc": "நீர்"
+    },
+    "notes": "Uyirmei with ii sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-u",
+    "input": "குரு",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கு", "ரு"],
+      "nfc": "குரு"
+    },
+    "notes": "Uyirmei with u sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-uu",
+    "input": "பூமி",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["பூ", "மி"],
+      "nfc": "பூமி"
+    },
+    "notes": "Uyirmei with uu sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-e",
+    "input": "கெட்ட",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கெ", "ட்", "ட"],
+      "nfc": "கெட்ட"
+    },
+    "notes": "Uyirmei with e sign (drawn before the consonant).",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-ee",
+    "input": "தேன்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["தே", "ன்"],
+      "nfc": "தேன்"
+    },
+    "notes": "Uyirmei with ee sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-ai",
+    "input": "இலங்கை",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["இ", "ல", "ங்", "கை"],
+      "nfc": "இலங்கை"
+    },
+    "notes": "இலங்கை: ai sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-o",
+    "input": "கொழும்பு",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கொ", "ழு", "ம்", "பு"],
+      "nfc": "கொழும்பு"
+    },
+    "notes": "கொழும்பு: composed o sign U+0BCA.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-oo",
+    "input": "தோட்டம்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["தோ", "ட்", "ட", "ம்"],
+      "nfc": "தோட்டம்"
+    },
+    "notes": "Composed oo sign U+0BCB.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sign-au",
+    "input": "கௌரவம்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கௌ", "ர", "வ", "ம்"],
+      "nfc": "கௌரவம்"
+    },
+    "notes": "Composed au sign U+0BCC.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-pulli",
+    "input": "தமிழ்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["த", "மி", "ழ்"],
+      "nfc": "தமிழ்"
+    },
+    "notes": "தமிழ்: pulli (virama) U+0BCD attaches to the consonant.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-word-vanakkam",
+    "input": "வணக்கம்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["வ", "ண", "க்", "க", "ம்"],
+      "nfc": "வணக்கம்"
+    },
+    "notes": "வணக்கம்.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-word-jaffna",
+    "input": "யாழ்ப்பாணம்",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["யா", "ழ்", "ப்", "பா", "ண", "ம்"],
+      "nfc": "யாழ்ப்பாணம்"
+    },
+    "notes": "யாழ்ப்பாணம் (Jaffna).",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-grantha",
+    "input": "ஜ ஷ ஸ ஹ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஜ", " ", "ஷ", " ", "ஸ", " ", "ஹ"],
+      "nfc": "ஜ ஷ ஸ ஹ"
+    },
+    "notes": "Grantha consonants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-grantha-ksha",
+    "input": "க்ஷ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["க்", "ஷ"],
+      "nfc": "க்ஷ"
+    },
+    "notes": "க்ஷ: two clusters in Unicode; often drawn as one ligature. needs-native-review",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-grantha-sri",
+    "input": "ஸ்ரீ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஸ்", "ரீ"],
+      "nfc": "ஸ்ரீ"
+    },
+    "notes": "ஸ்ரீ: two clusters in Unicode; usually drawn as one ligature. needs-native-review",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-grantha-word",
+    "input": "ஜனாதிபதி",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஜ", "னா", "தி", "ப", "தி"],
+      "nfc": "ஜனாதிபதி"
+    },
+    "notes": "ஜனாதிபதி (president).",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-split-o",
+    "input": "கொ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கொ"],
+      "nfc": "கொ"
+    },
+    "notes": "Split o sign: e sign + aa sign. NFC composes to U+0BCA.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-split-oo",
+    "input": "கோ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கோ"],
+      "nfc": "கோ"
+    },
+    "notes": "Split oo sign: ee sign + aa sign. NFC composes to U+0BCB.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-split-au",
+    "input": "கௌ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கௌ"],
+      "nfc": "கௌ"
+    },
+    "notes": "Split au sign: e sign + au length mark. NFC composes to U+0BCC.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-split-letter-au",
+    "input": "ஔ",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["ஔ"],
+      "nfc": "ஔ"
+    },
+    "notes": "ஒ + au length mark. NFC composes to ஔ U+0B94.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-split-word",
+    "input": "கொழும்பு",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["கொ", "ழு", "ம்", "பு"],
+      "nfc": "கொழும்பு"
+    },
+    "notes": "கொழும்பு typed with a split o sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-sentence",
+    "input": "நான் பள்ளிக்குச் செல்கிறேன்.",
+    "expected": {
+      "script": "tamil",
+      "graphemes": [
+        "நா",
+        "ன்",
+        " ",
+        "ப",
+        "ள்",
+        "ளி",
+        "க்",
+        "கு",
+        "ச்",
+        " ",
+        "செ",
+        "ல்",
+        "கி",
+        "றே",
+        "ன்",
+        "."
+      ],
+      "nfc": "நான் பள்ளிக்குச் செல்கிறேன்."
+    },
+    "notes": "Short sentence with full stop.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-digits",
+    "input": "௧௨௩",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["௧", "௨", "௩"],
+      "nfc": "௧௨௩"
+    },
+    "notes": "Tamil digits are in the Tamil block.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-number-signs",
+    "input": "௰ ௱ ௲",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["௰", " ", "௱", " ", "௲"],
+      "nfc": "௰ ௱ ௲"
+    },
+    "notes": "Tamil ten, hundred, thousand signs.",
+    "reviewedBy": null
+  },
+  {
+    "id": "ta-supplement",
+    "input": "𑿀𑿕",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["𑿀", "𑿕"],
+      "nfc": "𑿀𑿕"
+    },
+    "notes": "Tamil Supplement block (fractions).",
+    "reviewedBy": null
+  }
+]

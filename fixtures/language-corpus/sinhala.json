@@ -1,0 +1,546 @@
+[
+  {
+    "id": "si-vowels-short",
+    "input": "අ ඉ උ එ ඔ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["අ", " ", "ඉ", " ", "උ", " ", "එ", " ", "ඔ"],
+      "nfc": "අ ඉ උ එ ඔ"
+    },
+    "notes": "Short independent vowels.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-vowels-long",
+    "input": "ආ ඊ ඌ ඒ ඕ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ආ", " ", "ඊ", " ", "ඌ", " ", "ඒ", " ", "ඕ"],
+      "nfc": "ආ ඊ ඌ ඒ ඕ"
+    },
+    "notes": "Long independent vowels.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-vowels-ae-ai-au",
+    "input": "ඇ ඈ ඓ ඖ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ඇ", " ", "ඈ", " ", "ඓ", " ", "ඖ"],
+      "nfc": "ඇ ඈ ඓ ඖ"
+    },
+    "notes": "Independent ae, aae, ai, au.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-vowels-vocalic",
+    "input": "ඍ ඎ ඏ ඐ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ඍ", " ", "ඎ", " ", "ඏ", " ", "ඐ"],
+      "nfc": "ඍ ඎ ඏ ඐ"
+    },
+    "notes": "Vocalic r and l vowels (rare).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-consonants-common",
+    "input": "කගචජටඩතදනපබමයරලවසහළ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": [
+        "ක",
+        "ග",
+        "ච",
+        "ජ",
+        "ට",
+        "ඩ",
+        "ත",
+        "ද",
+        "න",
+        "ප",
+        "බ",
+        "ම",
+        "ය",
+        "ර",
+        "ල",
+        "ව",
+        "ස",
+        "හ",
+        "ළ"
+      ],
+      "nfc": "කගචජටඩතදනපබමයරලවසහළ"
+    },
+    "notes": "Unaspirated consonants; each is one cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-consonants-aspirated",
+    "input": "ඛඝඡඣඨඪථධඵභශෂ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ඛ", "ඝ", "ඡ", "ඣ", "ඨ", "ඪ", "ථ", "ධ", "ඵ", "භ", "ශ", "ෂ"],
+      "nfc": "ඛඝඡඣඨඪථධඵභශෂ"
+    },
+    "notes": "Aspirated consonants and sibilants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-prenasalized",
+    "input": "ඟඦඬඳඹ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ඟ", "ඦ", "ඬ", "ඳ", "ඹ"],
+      "nfc": "ඟඦඬඳඹ"
+    },
+    "notes": "Prenasalized (sanyaka) consonants.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-anusvara-visarga",
+    "input": "කං කඃ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කං", " ", "කඃ"],
+      "nfc": "කං කඃ"
+    },
+    "notes": "Anusvara and visarga attach to the consonant.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-aela-pilla",
+    "input": "කාලය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කා", "ල", "ය"],
+      "nfc": "කාලය"
+    },
+    "notes": "Vowel sign aa (aela-pilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-ae",
+    "input": "මැණික",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["මැ", "ණි", "ක"],
+      "nfc": "මැණික"
+    },
+    "notes": "Vowel sign ae (ketti aeda-pilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-aae",
+    "input": "කෑම",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෑ", "ම"],
+      "nfc": "කෑම"
+    },
+    "notes": "Vowel sign aae (diga aeda-pilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-i",
+    "input": "කිරි",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කි", "රි"],
+      "nfc": "කිරි"
+    },
+    "notes": "Vowel sign i (ispilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-ii",
+    "input": "නීතිය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["නී", "ති", "ය"],
+      "nfc": "නීතිය"
+    },
+    "notes": "Vowel sign ii (diga ispilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-u",
+    "input": "කුරුල්ලා",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කු", "රු", "ල්", "ලා"],
+      "nfc": "කුරුල්ලා"
+    },
+    "notes": "Vowel sign u (paa-pilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-uu",
+    "input": "සූර්යයා",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["සූ", "ර්", "ය", "යා"],
+      "nfc": "සූර්යයා"
+    },
+    "notes": "Vowel sign uu; explicit al-lakuna without ZWJ (no yansaya).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-r",
+    "input": "කෘෂිකර්මය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෘ", "ෂි", "ක", "ර්", "ම", "ය"],
+      "nfc": "කෘෂිකර්මය"
+    },
+    "notes": "Vowel sign vocalic r (gaetta-pilla).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-rr",
+    "input": "කෲ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෲ"],
+      "nfc": "කෲ"
+    },
+    "notes": "Vowel sign vocalic rr (rare).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-rare-l",
+    "input": "කෟ කෳ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෟ", " ", "කෳ"],
+      "nfc": "කෟ කෳ"
+    },
+    "notes": "Gayanukitta and vocalic ll sign (rare).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-e",
+    "input": "කෙසෙල්",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෙ", "සෙ", "ල්"],
+      "nfc": "කෙසෙල්"
+    },
+    "notes": "Vowel sign e (kombuva); stored after the consonant, drawn before it.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-ee",
+    "input": "දේශය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["දේ", "ශ", "ය"],
+      "nfc": "දේශය"
+    },
+    "notes": "Vowel sign ee (kombuva + al-lakuna, U+0DDA).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-ai",
+    "input": "දෛවය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["දෛ", "ව", "ය"],
+      "nfc": "දෛවය"
+    },
+    "notes": "Vowel sign ai (kombu deka, U+0DDB).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-o",
+    "input": "කොළඹ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කො", "ළ", "ඹ"],
+      "nfc": "කොළඹ"
+    },
+    "notes": "Vowel sign o (U+0DDC).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-oo",
+    "input": "මෝටරය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["මෝ", "ට", "ර", "ය"],
+      "nfc": "මෝටරය"
+    },
+    "notes": "Vowel sign oo (U+0DDD).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sign-au",
+    "input": "කෞතුකාගාරය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෞ", "තු", "කා", "ගා", "ර", "ය"],
+      "nfc": "කෞතුකාගාරය"
+    },
+    "notes": "Vowel sign au (U+0DDE).",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-al-lakuna",
+    "input": "පාසල්",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["පා", "ස", "ල්"],
+      "nfc": "පාසල්"
+    },
+    "notes": "Al-lakuna (virama) U+0DCA attaches to the consonant.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-yansaya",
+    "input": "වාක්\u200dයය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["වා", "ක්\u200d", "ය", "ය"],
+      "nfc": "වාක්\u200dයය"
+    },
+    "notes": "Yansaya: consonant + al-lakuna + ZWJ + ය. Unicode has no Sinhala conjunct rule, so ය is its own cluster. needs-native-review",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-rakaransaya",
+    "input": "ප්\u200dරශ්නය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ප්\u200d", "ර", "ශ්", "න", "ය"],
+      "nfc": "ප්\u200dරශ්නය"
+    },
+    "notes": "Rakaransaya: consonant + al-lakuna + ZWJ + ර.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-rakaransaya-shri",
+    "input": "ශ්\u200dරී ලංකාව",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ශ්\u200d", "රී", " ", "ලං", "කා", "ව"],
+      "nfc": "ශ්\u200dරී ලංකාව"
+    },
+    "notes": "ශ්\u200dරී ලංකාව with rakaransaya on ශ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-repaya",
+    "input": "ධර්\u200dමය",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ධ", "ර්\u200d", "ම", "ය"],
+      "nfc": "ධර්\u200dමය"
+    },
+    "notes": "Repaya: ර + al-lakuna + ZWJ + consonant. needs-native-review",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-touching",
+    "input": "සත\u200d්ව",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ස", "ත\u200d්", "ව"],
+      "nfc": "සත\u200d්ව"
+    },
+    "notes": "Touching letters: consonant + ZWJ + al-lakuna + consonant. needs-native-review",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-explicit-virama",
+    "input": "ක්ෂණ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ක්", "ෂ", "ණ"],
+      "nfc": "ක්ෂණ"
+    },
+    "notes": "No joiner: al-lakuna is shown, no conjunct.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-sentence",
+    "input": "මම පාසල් යමි.",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ම", "ම", " ", "පා", "ස", "ල්", " ", "ය", "මි", "."],
+      "nfc": "මම පාසල් යමි."
+    },
+    "notes": "Short sentence with full stop.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-kundaliya",
+    "input": "ස්තූතියි ෴",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ස්", "තූ", "ති", "යි", " ", "෴"],
+      "nfc": "ස්තූතියි ෴"
+    },
+    "notes": "Kunddaliya punctuation U+0DF4 is in the Sinhala block.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-split-o",
+    "input": "කො",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කො"],
+      "nfc": "කො"
+    },
+    "notes": "Split vowel sign o: kombuva + aela-pilla. NFC composes to U+0DDC.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-split-ee",
+    "input": "කේ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කේ"],
+      "nfc": "කේ"
+    },
+    "notes": "Split vowel sign ee: kombuva + al-lakuna. NFC composes to U+0DDA.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-split-oo",
+    "input": "කෝ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෝ"],
+      "nfc": "කෝ"
+    },
+    "notes": "Split vowel sign oo. NFC composes to U+0DDD.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-split-au",
+    "input": "කෞ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෞ"],
+      "nfc": "කෞ"
+    },
+    "notes": "Split vowel sign au: kombuva + gayanukitta. NFC composes to U+0DDE.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-split-word",
+    "input": "කොළඹ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කො", "ළ", "ඹ"],
+      "nfc": "කොළඹ"
+    },
+    "notes": "කොළඹ typed with a split o sign.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-aa",
+    "input": "අා",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["අා"],
+      "nfc": "අා",
+      "normalized": "ආ"
+    },
+    "notes": "අ + aela-pilla looks like ආ. Not changed by NFC; normalizeSinhalaText uses U+0D86.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-ae",
+    "input": "අැ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["අැ"],
+      "nfc": "අැ",
+      "normalized": "ඇ"
+    },
+    "notes": "අ + ae sign looks like ඇ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-ee",
+    "input": "එ්",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["එ්"],
+      "nfc": "එ්",
+      "normalized": "ඒ"
+    },
+    "notes": "එ + al-lakuna looks like ඒ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-ai",
+    "input": "එෙ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["එෙ"],
+      "nfc": "එෙ",
+      "normalized": "ඓ"
+    },
+    "notes": "එ + kombuva looks like ඓ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-oo",
+    "input": "ඔ්",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ඔ්"],
+      "nfc": "ඔ්",
+      "normalized": "ඕ"
+    },
+    "notes": "ඔ + al-lakuna looks like ඕ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-uu",
+    "input": "උෟ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["උෟ"],
+      "nfc": "උෟ",
+      "normalized": "ඌ"
+    },
+    "notes": "උ + gayanukitta looks like ඌ.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-kombu-deka",
+    "input": "කෙෙ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["කෙෙ"],
+      "nfc": "කෙෙ",
+      "normalized": "කෛ"
+    },
+    "notes": "Two kombuva signs look like kombu deka U+0DDB.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-fix-blocked-by-zwj",
+    "input": "එ\u200d්",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["එ\u200d්"],
+      "nfc": "එ\u200d්"
+    },
+    "notes": "A ZWJ between එ and al-lakuna blocks the replacement; ZWJ is kept.",
+    "reviewedBy": null
+  },
+  {
+    "id": "si-archaic-numbers",
+    "input": "𑇡𑇢𑇣",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["𑇡", "𑇢", "𑇣"],
+      "nfc": "𑇡𑇢𑇣"
+    },
+    "notes": "Sinhala Archaic Numbers block (U+111E0–U+111FF).",
+    "reviewedBy": null
+  }
+]
