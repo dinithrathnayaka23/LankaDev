@@ -11,14 +11,12 @@ export default defineConfig({
       include: ["src/**/*.ts"],
       exclude: ["src/**/*.test.ts"],
       reporter: ["text", "lcov"],
-      // M2 exit gate: locale, config and resolve logic is fully covered.
+      // M2/M3 exit gates: every core module is fully covered.
       thresholds: {
-        "src/{locales,config,resolve,errors}.ts": {
-          lines: 100,
-          branches: 100,
-          functions: 100,
-          statements: 100,
-        },
+        lines: 100,
+        branches: 100,
+        functions: 100,
+        statements: 100,
       },
     },
   },
