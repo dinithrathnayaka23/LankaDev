@@ -475,24 +475,34 @@ export function isSegmenterSupported(): boolean;
 
 ### Tasks
 
-- [ ] `src/ranges.ts` — range table + `getCharScript` (iterate by code point with `for…of`, never by UTF-16 index).
-- [ ] `src/detect.ts` — `detectScript`, `analyzeScripts`, `contains*`. Rule: `mixed` when second script ≥ 20 % of letters (document threshold).
-- [ ] `src/normalize.ts` — NFC; Sinhala: reorder known non-canonical vowel-sign sequences only if verified in corpus; Tamil: NFC handles split vowel signs (e.g. U+0BCA ↔ U+0BC6 U+0BBE). Document every rule.
-- [ ] `src/segment.ts` — `Intl.Segmenter` path + fallback (code-point split that keeps combining marks U+0DCA–U+0DDF, U+0DF2–U+0DF3, U+0BBE–U+0BCD, U+0BD7, ZWJ/ZWNJ attached to the previous cluster).
-- [ ] `fixtures/language-corpus/` — create `sinhala.json`, `tamil.json`, `mixed.json` with shape `{ id, input, expected: { script, graphemes, nfc }, notes, reviewedBy: null }` and `PROVENANCE.md` (all synthetic/self-authored).
-- [ ] Corpus-driven test file reading those fixtures.
+- [x] `src/ranges.ts` — range table + `getCharScript` (iterate by code point with `for…of`, never by UTF-16 index).
+- [x] `src/detect.ts` — `detectScript`, `analyzeScripts`, `contains*`. Rule: `mixed` when second script ≥ 20 % of letters (document threshold).
+- [x] `src/normalize.ts` — NFC; Sinhala: reorder known non-canonical vowel-sign sequences only if verified in corpus; Tamil: NFC handles split vowel signs (e.g. U+0BCA ↔ U+0BC6 U+0BBE). Document every rule.
+- [x] `src/segment.ts` — `Intl.Segmenter` path + fallback (code-point split that keeps combining marks U+0DCA–U+0DDF, U+0DF2–U+0DF3, U+0BBE–U+0BCD, U+0BD7, ZWJ/ZWNJ attached to the previous cluster).
+- [x] `fixtures/language-corpus/` — create `sinhala.json`, `tamil.json`, `mixed.json` with shape `{ id, input, expected: { script, graphemes, nfc }, notes, reviewedBy: null }` and `PROVENANCE.md` (all synthetic/self-authored).
+- [x] Corpus-driven test file reading those fixtures.
 
 ### Tests (minimum cases)
 
-- [ ] Sinhala vowels, consonants, consonant + every vowel sign, al-lakuna, yansaya (`ය` + `්` + ZWJ), rakaransaya, repaya, touching letters.
-- [ ] Tamil vowels, consonants, uyirmei, pulli, grantha letters (ஜ ஷ ஸ ஹ க்ஷ ஸ்ரீ), split vs composed vowel signs.
-- [ ] Mixed: Sinhala + English, Tamil + digits, emoji (👍🏽 = 1 grapheme), Sinhala numerals.
-- [ ] `truncate` never splits a grapheme; `normalize*` is idempotent and keeps ZWJ.
-- [ ] Fallback segmenter produces the same graphemes as `Intl.Segmenter` for the whole corpus (run test with `Intl.Segmenter` stubbed out).
+- [x] Sinhala vowels, consonants, consonant + every vowel sign, al-lakuna, yansaya (`ය` + `්` + ZWJ), rakaransaya, repaya, touching letters.
+- [x] Tamil vowels, consonants, uyirmei, pulli, grantha letters (ஜ ஷ ஸ ஹ க்ஷ ஸ்ரீ), split vs composed vowel signs.
+- [x] Mixed: Sinhala + English, Tamil + digits, emoji (👍🏽 = 1 grapheme), Sinhala numerals.
+- [x] `truncate` never splits a grapheme; `normalize*` is idempotent and keeps ZWJ.
+- [x] Fallback segmenter produces the same graphemes as `Intl.Segmenter` for the whole corpus (run test with `Intl.Segmenter` stubbed out).
+
+### As built
+
+- **Detection:** Sinhala/Tamil by block; Latin uses the full `Script=Latin` property (superset of Basic Latin + Latin-1); `common` = `Script=Common` + `Script=Inherited`. `analyzeScripts` counts code points. `detectScript` returns `"sinhala" | "tamil" | "latin" | "other" | "mixed" | "unknown"` (exported as `DetectedScript`); `MIXED_SCRIPT_THRESHOLD = 0.2` and `SCRIPT_RANGES` are exported.
+- **Normalization:** NFC composes Sinhala and Tamil split vowel signs (verified in the corpus). Sinhala also replaces 11 vowel-letter + sign look-alikes (e.g. `එ` + `්` → `ඒ`, two kombuvas → `ෛ`), exported as `SINHALA_SEQUENCE_FIXES`. Visual-order typing is not reordered. ZWJ/ZWNJ are never removed or moved. A seeded random test checks idempotency on 2,000 Sinhala and 2,000 Tamil sequences.
+- **`toSearchKey`** also removes soft hyphen, ZWSP, word joiner and BOM, and runs NFC after removing joiners.
+- **Segmentation:** ICU has no conjunct rule for Sinhala/Tamil, so `ක්‍ය` is two clusters. `truncate` never stops on a cluster ending in ZWJ, so conjuncts stay whole; the ellipsis counts toward the limit and trailing whitespace is trimmed. The fallback implements UAX #29 except GB6–8 (Hangul), GB9b (Prepend) and GB9c (Indic conjuncts, not used by Sinhala/Tamil); `words` has a regex fallback. Segmenters are cached (bounded).
+- **Corpus:** `fixtures/language-corpus` has 47 Sinhala, 34 Tamil and 19 mixed fixtures. Clusters were written by hand and checked against `Intl.Segmenter` (ICU 78.3). Optional `expected.normalized` holds the normalizer output when it differs from NFC.
+- **Package setup:** same tsconfig split and 100 % coverage gate as core; `PACKAGE_NAME` placeholder removed. Rules documented in `docs/unicode.md`.
 
 ### Exit gate
 
-- ≥ 60 reviewed-shape fixtures (30 si, 30 ta) committed; corpus test green. Mark fixtures `reviewedBy` once a native speaker confirms (can happen later, tracked as issues).
+- [x] ≥ 60 reviewed-shape fixtures (30 si, 30 ta) committed; corpus test green.
+- [ ] Native-speaker review (`reviewedBy`), tracked in `SCOPE.md`. Can happen later.
 
 ---
 
