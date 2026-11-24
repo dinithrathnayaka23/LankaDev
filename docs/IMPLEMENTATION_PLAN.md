@@ -387,22 +387,36 @@ export function getNumberFormatter(
 
 ### Tasks
 
-- [ ] `src/formatting/cache.ts` — `Map` cache keyed by `locale + JSON.stringify(options)`.
-- [ ] `src/formatting/currency.ts` — `formatLKR` (`style: "currency", currency: "LKR"`). Reject `NaN`/`Infinity` with `RangeError`.
-- [ ] `src/formatting/number.ts`, `date.ts`, `relative.ts`.
-- [ ] Add `"./formatting"` entry in `exports` and `tsup` entry list.
-- [ ] `docs/formatting.md` — document real output per locale per runtime, and state clearly: _formatting only; use decimal-safe arithmetic (integer cents or a decimal lib) for money_.
+- [x] `src/formatting/cache.ts` — `Map` cache keyed by `locale + JSON.stringify(options)`.
+- [x] `src/formatting/currency.ts` — `formatLKR` (`style: "currency", currency: "LKR"`). Reject `NaN`/`Infinity` with `RangeError`.
+- [x] `src/formatting/number.ts`, `date.ts`, `relative.ts`.
+- [x] Add `"./formatting"` entry in `exports` and `tsup` entry list.
+- [x] `docs/formatting.md` — document real output per locale per runtime, and state clearly: _formatting only; use decimal-safe arithmetic (integer cents or a decimal lib) for money_.
 
 ### Tests
 
-- [ ] Snapshot table: `formatLKR(12500.5, { locale })` for each locale × each `display`. Snapshots are **per Node major** (ICU differs) — store under `__snapshots__/node-<major>/`.
-- [ ] `formatDate` defaults to `Asia/Colombo` (UTC+5:30): `new Date("2026-01-01T20:00:00Z")` → 2 Jan.
-- [ ] Bigint support; negative values; `RangeError` on `NaN`.
-- [ ] Cache returns the same instance for identical args.
+- [x] Snapshot table: `formatLKR(12500.5, { locale })` for each locale × each `display`. Snapshots are **per Node major** (ICU differs) — store under `__snapshots__/node-<major>/`.
+- [x] `formatDate` defaults to `Asia/Colombo` (UTC+5:30): `new Date("2026-01-01T20:00:00Z")` → 2 Jan.
+- [x] Bigint support; negative values; `RangeError` on `NaN`.
+- [x] Cache returns the same instance for identical args.
+
+### As built
+
+- **Cache:** bounded (100 entries, oldest evicted) with sorted-key serialisation, so `{ a, b }` and `{ b, a }` share an entry. Date and relative-time formatters are cached too.
+- **`formatLKR` extras:** setting one fraction-digit bound adjusts the other; `signDisplay: "negative"` means no `-0`. Needs ES2023 `Intl` typings, so `tsconfig.base.json` `lib` is now `ES2023` (target stays ES2022; supported in every runtime in ADR-0005).
+- **`formatRelativeTime`** also accepts `numeric` and `style`. **`DEFAULT_TIME_ZONE`** is exported.
+- **Errors:** unsupported locales throw `RangeError` (same as `Intl`), not `LankaConfigError`. With CJS output, each entry point bundles its own copy of shared code, so `instanceof LankaConfigError` would be unreliable across `@lankadev/core` and `@lankadev/core/formatting`.
+- **`formatNumber`** passes non-finite values through as `Intl` does (`"NaN"`, `"∞"`). Only `formatLKR` rejects them.
+- **Snapshots:** `output.snapshot.test.ts` writes `__snapshots__/node-<major>/formatting-output.json` with `toMatchFileSnapshot`, and escapes invisible characters such as NBSP. In CI, majors without a snapshot are skipped rather than failed. Exact Sinhala/Tamil strings live only in the snapshot; other tests check runtime-independent behaviour.
+- **tsconfig split (core):** `tsconfig.lib.json` (sources, no Node types) for tsup and the first typecheck pass; `tsconfig.json` (sources, tests and configs with `@types/node`) for ESLint and the second pass.
+- **Coverage gate** widened to 100 % on all core sources.
+- **Findings** recorded in `docs/formatting.md` and as open items in `SCOPE.md`: CLDR has no `en-LK` data (month-first numeric dates); `ta-LK` uses lakh grouping; the `si-LK` currency name has no space before the number.
 
 ### Exit gate
 
-- Output documented for Node 22, 24 and 26 plus a manual check in Chrome/Firefox/Safari (record in `docs/formatting.md`).
+- [x] Output documented for Node 24 (ICU 78.3 / CLDR 48) in `docs/formatting.md`.
+- [ ] Node 22 and 26 snapshots: run `pnpm --filter @lankadev/core test` on each major and commit the generated file. Downloading other Node binaries was not possible in the build session.
+- [ ] Manual Chrome/Firefox/Safari check: the console snippet and results table are in `docs/formatting.md`.
 
 ---
 
