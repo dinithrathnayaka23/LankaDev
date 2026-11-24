@@ -1,0 +1,9 @@
+{
+  "$comment": "Library sources only: no Node or test globals. Used by tsup (d.ts) and the first typecheck pass.",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": []
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}

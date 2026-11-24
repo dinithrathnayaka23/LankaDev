@@ -10,4 +10,5 @@ export default defineConfig({
   clean: true,
   target: "es2022",
   platform: "neutral",
+  tsconfig: "tsconfig.lib.json",
 });
