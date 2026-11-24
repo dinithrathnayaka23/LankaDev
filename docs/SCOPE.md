@@ -41,12 +41,15 @@
 6. `TransliterationInput` keeps native IME input unchanged and preserves caret in the manual checklist on 5 platforms.
 7. All packages pass `publint` + `attw`; no runtime dependency outside the allowed licence list (ADR-0007).
 
-## Open items (not blocking M1)
+## Open items
 
-| Item                                                                                                            | Owner                                           | Needed by                   |
-| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------- |
-| Create npm org `lankadev` and enable 2FA                                                                        | Maintainer (manual on npmjs.com)                | M12                         |
-| Trademark / domain check for "LankaDev"                                                                         | Maintainer                                      | M12                         |
-| Run hands-on transliteration audit (`docs/research/transliteration-audit/run-audit.mjs`) and fill results table | Maintainer approval to execute third-party code | Before M6 starts            |
-| Native-speaker review of `docs/research/transliteration-audit/words.json`                                       | Recruit ≥ 1 Sinhala, ≥ 1 Tamil reviewer         | Before M6 exit              |
-| Developer interviews (source plan days 1–2: 5–8 React/Next.js devs)                                             | Maintainer                                      | Before M5 (to validate API) |
+| Item                                                                                                                                    | Owner                                                                   | Needed by                   |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------- |
+| Create npm org `lankadev` and enable 2FA                                                                                                | Maintainer (manual on npmjs.com)                                        | M12                         |
+| Trademark / domain check for "LankaDev"                                                                                                 | Maintainer                                                              | M12                         |
+| Run hands-on transliteration audit (`docs/research/transliteration-audit/run-audit.mjs`) and fill results table                         | Maintainer approval to execute third-party code                         | Before M6 starts            |
+| Native-speaker review of `docs/research/transliteration-audit/words.json`                                                               | Recruit ≥ 1 Sinhala, ≥ 1 Tamil reviewer                                 | Before M6 exit              |
+| Developer interviews (source plan days 1–2: 5–8 React/Next.js devs)                                                                     | Maintainer                                                              | Before M5 (to validate API) |
+| Decide `en-LK` date convention: keep CLDR `en` (month-first numeric dates) or map to day-first ([formatting.md](formatting.md) quirk 1) | Maintainer + developer interviews                                       | Before M5                   |
+| Confirm `ta-LK` number grouping (CLDR lakh `12,34,567` vs western `1,234,567`)                                                          | ≥ 1 Sri Lankan Tamil reviewer                                           | Before beta (M12)           |
+| Record Node 22 / 26 formatting snapshots and Chrome/Firefox/Safari checks in [formatting.md](formatting.md)                             | Maintainer (run `pnpm --filter @lankadev/core test` on each Node major) | Before beta (M12)           |
