@@ -1,0 +1,228 @@
+[
+  {
+    "id": "mx-si-en",
+    "input": "Hello ලංකා",
+    "expected": {
+      "script": "mixed",
+      "graphemes": ["H", "e", "l", "l", "o", " ", "ලං", "කා"],
+      "nfc": "Hello ලංකා"
+    },
+    "notes": "5 Latin and 4 Sinhala code points.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-si-en-name",
+    "input": "ශ්\u200dරී ලංකාව Sri Lanka",
+    "expected": {
+      "script": "mixed",
+      "graphemes": [
+        "ශ්\u200d",
+        "රී",
+        " ",
+        "ලං",
+        "කා",
+        "ව",
+        " ",
+        "S",
+        "r",
+        "i",
+        " ",
+        "L",
+        "a",
+        "n",
+        "k",
+        "a"
+      ],
+      "nfc": "ශ්\u200dරී ලංකාව Sri Lanka"
+    },
+    "notes": "Sinhala and English name.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-si-mostly",
+    "input": "මම පාසල් යමි OK",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ම", "ම", " ", "පා", "ස", "ල්", " ", "ය", "මි", " ", "O", "K"],
+      "nfc": "මම පාසල් යමි OK"
+    },
+    "notes": "Latin is below the 20 % mixed threshold (2 of 12 letters).",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-ta-digits",
+    "input": "தமிழ் 2026",
+    "expected": {
+      "script": "tamil",
+      "graphemes": ["த", "மி", "ழ்", " ", "2", "0", "2", "6"],
+      "nfc": "தமிழ் 2026"
+    },
+    "notes": "ASCII digits are common and not counted.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-ta-en",
+    "input": "Tamil தமிழ்",
+    "expected": {
+      "script": "mixed",
+      "graphemes": ["T", "a", "m", "i", "l", " ", "த", "மி", "ழ்"],
+      "nfc": "Tamil தமிழ்"
+    },
+    "notes": "5 Latin and 5 Tamil code points.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-si-ta",
+    "input": "ලංකා இலங்கை",
+    "expected": {
+      "script": "mixed",
+      "graphemes": ["ලං", "කා", " ", "இ", "ல", "ங்", "கை"],
+      "nfc": "ලංකා இலங்கை"
+    },
+    "notes": "Sinhala and Tamil.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-emoji-skin-tone",
+    "input": "👍🏽",
+    "expected": {
+      "script": "unknown",
+      "graphemes": ["👍🏽"],
+      "nfc": "👍🏽"
+    },
+    "notes": "Thumbs up + skin tone modifier is one cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-si-emoji",
+    "input": "ස්තූතියි 👍🏽",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ස්", "තූ", "ති", "යි", " ", "👍🏽"],
+      "nfc": "ස්තූතියි 👍🏽"
+    },
+    "notes": "Emoji are common and not counted.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-emoji-zwj-family",
+    "input": "👨\u200d👩\u200d👧",
+    "expected": {
+      "script": "unknown",
+      "graphemes": ["👨\u200d👩\u200d👧"],
+      "nfc": "👨\u200d👩\u200d👧"
+    },
+    "notes": "Emoji ZWJ sequence is one cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-flag",
+    "input": "🇱🇰",
+    "expected": {
+      "script": "unknown",
+      "graphemes": ["🇱🇰"],
+      "nfc": "🇱🇰"
+    },
+    "notes": "Regional indicator pair (Sri Lanka flag).",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-flags-two",
+    "input": "🇱🇰🇮🇳",
+    "expected": {
+      "script": "unknown",
+      "graphemes": ["🇱🇰", "🇮🇳"],
+      "nfc": "🇱🇰🇮🇳"
+    },
+    "notes": "Two flags: indicators pair up in order.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-si-lith-digits",
+    "input": "෧෨෩",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["෧", "෨", "෩"],
+      "nfc": "෧෨෩"
+    },
+    "notes": "Sinhala Lith digits U+0DE6–U+0DEF are in the Sinhala block.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-digits-only",
+    "input": "12,345.67",
+    "expected": {
+      "script": "unknown",
+      "graphemes": ["1", "2", ",", "3", "4", "5", ".", "6", "7"],
+      "nfc": "12,345.67"
+    },
+    "notes": "No letters.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-empty",
+    "input": "",
+    "expected": {
+      "script": "unknown",
+      "graphemes": [],
+      "nfc": ""
+    },
+    "notes": "Empty string.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-latin-combining",
+    "input": "Cafe\u0301",
+    "expected": {
+      "script": "latin",
+      "graphemes": ["C", "a", "f", "e\u0301"],
+      "nfc": "Café"
+    },
+    "notes": "Combining acute (Inherited script) is not counted. NFC composes é.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-crlf",
+    "input": "ලංකා\r\nකොළඹ",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ලං", "කා", "\r\n", "කො", "ළ", "ඹ"],
+      "nfc": "ලංකා\r\nකොළඹ"
+    },
+    "notes": "CR LF is one cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-zwsp",
+    "input": "ලං\u200bකා",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["ලං", "\u200b", "කා"],
+      "nfc": "ලං\u200bකා"
+    },
+    "notes": "Zero-width space is a control: its own cluster.",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-devanagari",
+    "input": "नमः",
+    "expected": {
+      "script": "other",
+      "graphemes": ["न", "मः"],
+      "nfc": "नमः"
+    },
+    "notes": "Other script; visarga attaches. Avoids Devanagari conjuncts (GB9c is not in the fallback).",
+    "reviewedBy": null
+  },
+  {
+    "id": "mx-currency",
+    "input": "රු. 1,500",
+    "expected": {
+      "script": "sinhala",
+      "graphemes": ["රු", ".", " ", "1", ",", "5", "0", "0"],
+      "nfc": "රු. 1,500"
+    },
+    "notes": "Rupee abbreviation with amount.",
+    "reviewedBy": null
+  }
+]
